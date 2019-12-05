@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmelia <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/05 17:04:10 by tmelia            #+#    #+#             */
-/*   Updated: 2019/09/16 12:23:55 by tmelia           ###   ########.fr       */
+/*   Created: 2019/12/03 17:58:56 by rmarni            #+#    #+#             */
+/*   Updated: 2019/12/03 18:03:03 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "header.h"
 
-char	*ft_strncat(char *dest, const char *src, size_t n)
+void 	ft_exit(t_str *lem_in)
 {
-	size_t len;
-	size_t i;
-
-	i = 0;
-	len = ft_strlen(dest);
-	while (i < n && src[i] != '\0')
-		dest[len++] = src[i++];
-	dest[len] = '\0';
-	return (dest);
+	ft_printf(RED("Error\n"));
+	exit(0);
 }
