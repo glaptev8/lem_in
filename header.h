@@ -41,7 +41,18 @@ typedef struct s_str
 	char	*buf;
 	int 	fd;
 	int		**tab;
+	int		kol_way;
 }	t_str;
+
+typedef	struct	s_way
+{
+	int		x;
+	int		y;
+	int		flag;
+	struct s_way *head;
+	struct s_way *next;
+	struct s_way *prev;
+}				t_way;
 
 //t_str lem_in;
 

@@ -216,13 +216,122 @@ void    table(t_str *lem_in)
 	}
 }
 
+t_way	*lst_create(void)
+{
+	t_way *lst;
+	
+	lst = (t_way *)malloc(sizeof(t_way));
+	if (!lst)
+		return (NULL);
+	lst->next = NULL;
+	lst->prev = NULL;
+	lst->head = NULL;
+	return (lst);
+}
+
+t_way *lst_new(int len)
+{
+	t_way *lst;
+	t_way *tmp;
+	
+	if (len == 0)
+	{
+		lst = lst_create();
+		lst->flag = 0;
+		lst->next = lst;
+		lst->prev = lst;
+		return (lst);
+	}
+	else
+		lst = lst_create();
+	tmp = lst;
+	while (--len > 0)
+	{
+		lst->next = lst_create();
+		if (lst->next == NULL)
+			return (NULL);
+		lst->next->prev = lst;
+		lst = lst->next;
+	}
+	tmp->prev = lst;
+	lst->next = tmp;
+	return (lst);
+}
+
+void	set_way(t_str *lem_in, t_way ***way, int p, int z, int q)
+{
+	while ((*way)[q])
+		q++;
+	if (!(*way)[q])
+	{
+		(*way)[q] = lst_new(6);
+		(*way)[q]->head = (*way)[q];
+	}
+	t_way *l;
+	l = (*way)[q];
+	while (p != *lem_in->end - '0' && p < lem_in->room_count)
+	{
+		while (z < lem_in->room_count && lem_in->tab[p][z] != 1)
+			z++;
+		if (lem_in->tab[p][z] == 1)
+		{
+			if (z != *lem_in->end - '0')
+				set_way(lem_in, way, p, z + 1, q + 1);
+			if (z == lem_in->room_count)
+				z--;
+			(*way)[q]->x = p;
+			(*way)[q]->y = z;
+			(*way)[q] = (*way)[q]->next;
+			lem_in->tab[p][z] = 2;
+			lem_in->tab[z][p] = 2;
+			p = z;
+		}
+		else
+			p++;
+	}
+	int i;
+	
+//	i = 0;
+//	while (i < 2)
+//	{
+//		printf("%d  ->  %d\n", l->x, l->y);
+//		l = l->next;
+//		i++;
+//	}
+}
+
 int		main(int ac, char **av)
 {
 	t_str lem_in;
+	t_way	**way;
+	t_way	*l;
 	lem_in.fd = open(av[1], O_RDONLY);
 	ft_read_map(&lem_in);
 	table(&lem_in);
+	way = (t_way **)malloc(sizeof(t_way *) * 3);
+	set_way(&lem_in, &way, (*lem_in.start - '0'), 0, 0);
+//	l = &way[0];
 //	close(lem_in.fd);
+	int i = 0;
+	int j;
+	while (i < 6)
+	{
+		printf("%d  ->  %d    ", way[0]->x, way[0]->y);
+		printf("%d  ->  %d\n", way[1]->x, way[1]->y);
+		way[0] = way[0]->next;
+		way[1] = way[1]->next;
+		i++;
+	}
+	i = 0;
+	while (i < lem_in.room_count)
+	{
+		j = 0;
+		while (j < lem_in.room_count)
+			printf("%d ", lem_in.tab[i][j++]);
+		printf("\n");
+		i++;
+	}
+
 
 //	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[0][0], lem_in.arr_links[0][1]);
 //	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[1][0], lem_in.arr_links[1][1]);
