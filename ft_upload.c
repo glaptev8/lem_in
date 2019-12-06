@@ -260,11 +260,10 @@ t_way *lst_new(int len)
 
 void	set_way(t_str *lem_in, t_way ***way, int p, int z, int q)
 {
-	while ((*way)[q])
-		q++;
+	int sas;
 	if (!(*way)[q])
 	{
-		(*way)[q] = lst_new(6);
+		(*way)[q] = lst_new(3);
 		(*way)[q]->head = (*way)[q];
 	}
 	t_way *l;
@@ -276,18 +275,27 @@ void	set_way(t_str *lem_in, t_way ***way, int p, int z, int q)
 		if (lem_in->tab[p][z] == 1)
 		{
 			if (z != *lem_in->end - '0')
-				set_way(lem_in, way, p, z + 1, q + 1);
+			{
+				sas = q;
+				while ((*way)[sas])
+					sas++;
+				set_way(lem_in, way, p, z + 1, sas);
+			}
 			if (z == lem_in->room_count)
-				z--;
+			{
+				z = 0;
+				continue;
+			}
 			(*way)[q]->x = p;
 			(*way)[q]->y = z;
 			(*way)[q] = (*way)[q]->next;
 			lem_in->tab[p][z] = 2;
 			lem_in->tab[z][p] = 2;
 			p = z;
+			z = 0;
 		}
 		else
-			p++;
+			break;
 	}
 	int i;
 	
@@ -314,7 +322,7 @@ int		main(int ac, char **av)
 //	close(lem_in.fd);
 	int i = 0;
 	int j;
-	while (i < 6)
+	while (i < 3)
 	{
 		printf("%d  ->  %d    ", way[0]->x, way[0]->y);
 		printf("%d  ->  %d\n", way[1]->x, way[1]->y);
