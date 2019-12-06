@@ -176,20 +176,21 @@ void	ft_read_map(t_str *lem_in)
 
 void    table(t_str *lem_in)
 {
-	int tab[lem_in->room_count][lem_in->room_count];
 	int i;
 	int j;
 	int a;
 	int b;
 	
+	lem_in->tab = (int **)malloc(sizeof(int *) * lem_in->room_count);
 	i = 0;
 	j = 0;
 	while (i < lem_in->room_count)
 	{
 		j = 0;
+		lem_in->tab[i] = (int *)malloc(sizeof(int) * lem_in->room_count);
 		while (j < lem_in->room_count)
 		{
-			tab[i][j] = 0;
+			lem_in->tab[i][j] = 0;
 			j++;
 		}
 		i++;
@@ -200,8 +201,8 @@ void    table(t_str *lem_in)
 	{
 		a = *(lem_in->arr_links[i][0]) - '0';
 		b = *(lem_in->arr_links[i][1]) - '0';
-		tab[a][b] = 1;
-		tab[b][a] = 1;
+		lem_in->tab[a][b] = 1;
+		lem_in->tab[b][a] = 1;
 		i++;
 	}
 	i = 0;
@@ -209,12 +210,7 @@ void    table(t_str *lem_in)
 	{
 		j = 0;
 		while (j < lem_in->room_count)
-		{
-			if (tab[i][j] != 1)
-				tab[i][j] = 0;
-			printf("%d ", tab[i][j]);
-			j++;
-		}
+			printf("%d ", lem_in->tab[i][j++]);
 		printf("\n");
 		i++;
 	}
@@ -228,10 +224,10 @@ int		main(int ac, char **av)
 	table(&lem_in);
 //	close(lem_in.fd);
 
-	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[0][0], lem_in.arr_links[0][1]);
-	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[1][0], lem_in.arr_links[1][1]);
-	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[2][0], lem_in.arr_links[2][1]);
-	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[3][0], lem_in.arr_links[3][1]);
-	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[4][0], lem_in.arr_links[4][1]);
+//	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[0][0], lem_in.arr_links[0][1]);
+//	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[1][0], lem_in.arr_links[1][1]);
+//	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[2][0], lem_in.arr_links[2][1]);
+//	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[3][0], lem_in.arr_links[3][1]);
+//	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[4][0], lem_in.arr_links[4][1]);
 }
 

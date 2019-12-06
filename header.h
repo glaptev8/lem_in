@@ -40,6 +40,7 @@ typedef struct s_str
 	int 	link_count;
 	char	*buf;
 	int 	fd;
+	int		**tab;
 }	t_str;
 
 //t_str lem_in;
