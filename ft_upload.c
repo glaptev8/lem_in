@@ -258,16 +258,16 @@ t_way *lst_new(int len)
 	return (lst);
 }
 
-void	set_way(t_str *lem_in, t_way ***way, int p, int z, int q)
+void	set_way(t_str *lem_in, t_way **way, int p, int z, int q)
 {
 	int sas;
-	if (!(*way)[q])
+	if (!(way)[q])
 	{
-		(*way)[q] = lst_new(3);
-		(*way)[q]->head = (*way)[q];
+		(way)[q] = lst_create();
+//		(way)[q]->head = (*way)[q];
 	}
 	t_way *l;
-	l = (*way)[q];
+	l = (way)[q];
 	while (p != *lem_in->end - '0' && p < lem_in->room_count)
 	{
 		while (z < lem_in->room_count && lem_in->tab[p][z] != 1)
@@ -277,7 +277,7 @@ void	set_way(t_str *lem_in, t_way ***way, int p, int z, int q)
 			if (z != *lem_in->end - '0')
 			{
 				sas = q;
-				while ((*way)[sas])
+				while ((way)[sas])
 					sas++;
 				set_way(lem_in, way, p, z + 1, sas);
 			}
@@ -286,9 +286,11 @@ void	set_way(t_str *lem_in, t_way ***way, int p, int z, int q)
 				z = 0;
 				continue;
 			}
-			(*way)[q]->x = p;
-			(*way)[q]->y = z;
-			(*way)[q] = (*way)[q]->next;
+//			(*way)[q] = lst_create();
+			(way)[q]->x = p;
+			(way)[q]->y = z;
+			(way)[q]->next = lst_create();
+			(way)[q] = (way)[q]->next;
 			lem_in->tab[p][z] = 2;
 			lem_in->tab[z][p] = 2;
 			p = z;
@@ -311,12 +313,12 @@ void	set_way(t_str *lem_in, t_way ***way, int p, int z, int q)
 int		main(int ac, char **av)
 {
 	t_str lem_in;
-	t_way	**way;
+	t_way	*way;
 	t_way	*l;
 	lem_in.fd = open(av[1], O_RDONLY);
 	ft_read_map(&lem_in);
 	table(&lem_in);
-	way = (t_way **)malloc(sizeof(t_way *) * 3);
+//	way = (t_way *)malloc(sizeof(t_way) * 2);
 	set_way(&lem_in, &way, (*lem_in.start - '0'), 0, 0);
 //	l = &way[0];
 //	close(lem_in.fd);
@@ -324,10 +326,10 @@ int		main(int ac, char **av)
 	int j;
 	while (i < 3)
 	{
-		printf("%d  ->  %d    ", way[0]->x, way[0]->y);
-		printf("%d  ->  %d\n", way[1]->x, way[1]->y);
-		way[0] = way[0]->next;
-		way[1] = way[1]->next;
+//		printf("%d  ->  %d    ", way[0]->x, way[0]->y);
+//		printf("%d  ->  %d\n", way[1]->x, way[1]->y);
+//		way[0] = way[0]->next;
+//		way[1] = way[1]->next;
 		i++;
 	}
 	i = 0;
