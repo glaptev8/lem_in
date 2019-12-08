@@ -309,6 +309,35 @@ int **copy_tab(int **tab, int x)
 	}
 	return (tabb);
 }
+
+t_way *copy_way(t_way *way)
+{
+	t_way *head;
+	t_way *q;
+
+	q = lst_create();
+	head = way->head;
+	q->x = head->x;
+	q->y = head->y;
+	q->head = q;
+	q->next = lst_create();
+	q->next->prev = q;
+	q = q->next;
+	q->head = q->prev->head;
+	head = head->next;
+	while (head->next)
+	{
+		q->x = head->x;
+		q->y = head->y;
+		q->next = lst_create();
+		q->next->prev = q;
+		q = q->next;
+		q->head = q->prev->head;
+		head = head->next;
+	}
+	return (q);
+}
+
 void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 {
 	int sas;
@@ -322,6 +351,8 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 	}
 	if (way[q]->prev)
 		way[q]->head = way[q]->prev->head;
+	else
+		way[q]->head = way[q];
 	if (p != *lem_in->end - '0' && p < lem_in->room_count)
 	{
 		while (z < lem_in->room_count && tab[p][z] != 1)
@@ -333,10 +364,24 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 //			tabb[z][p] = 2;
 			while (way[sas])
 				sas++;
+			way[sas] = lst_create();
+			if (way[q]->next || way[q]->prev)
+			{
+				way[sas] = copy_way(way[q]);
+//				way[sas]->next = lst_create();
+//				way[sas]->next->prev = way[sas];
+//				way[sas] = way[sas]->next;
+			}
 			set_way(lem_in, way, p, z + 1, sas, tabb);
 		}
 		if (tabb[p][z] == 1 && z < lem_in->room_count)
 		{
+			way[q]->x = p;
+			way[q]->y = z;
+			way[q]->next = lst_create();
+			way[q]->next->prev = way[q];
+			way[q] = way[q]->next;
+			way[q]->head = way[q]->prev->head;
 			tabb[p][z] = 2;
 			tabb[z][p] = 2;
 			ft_printf("\n");
@@ -344,7 +389,7 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 			p = z;
 			set_way(lem_in, way, p, 0, q, tabb);
 		}
-		else
+		else if (p != *lem_in->end - '0')
 		{
 			free(way[q]);
 			way[q] = NULL;
@@ -360,9 +405,10 @@ int		main(int ac, char **av)
 	lem_in.fd = open(av[1], O_RDONLY);
 	ft_read_map(&lem_in);
 	table(&lem_in);
-	way = (t_way **)malloc(sizeof(t_way) * 4);
+	way = (t_way **)malloc(sizeof(t_way) * 40);
 	l = way[0];
 	set_way(&lem_in, way, (*lem_in.start - '0'), 0, 0, lem_in.tab);
+
 //	close(lem_in.fd);
 //	way[0] = way[0]->head;
 //	way[1] = way[1]->head;
