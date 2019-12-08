@@ -52,6 +52,7 @@ typedef	struct	s_way
 	struct s_way *head;
 	struct s_way *next;
 	struct s_way *prev;
+	struct s_way *this;
 }				t_way;
 
 //t_str lem_in;
