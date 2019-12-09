@@ -42,6 +42,7 @@ typedef struct s_str
 	int 	fd;
 	int		**tab;
 	int		kol_way;
+	int		count_ways;
 }	t_str;
 
 typedef	struct	s_way
