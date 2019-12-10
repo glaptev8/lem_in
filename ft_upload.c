@@ -338,15 +338,33 @@ t_way *copy_way(t_way *way)
 	return (q);
 }
 
-int 	p_busy(const int *tab, int z, int c)
+int 	p_busy(int **tab, t_way *z, int c, t_str *lem, int b, int a)
 {
 	int i;
-
+	t_way *o;
+	
+	if (!z)
+		return (0);
+	o = z->head;
 	i = 0;
-	while (i < c)
+//	while (lem->tab[a][b] != 1 && b < lem->room_count)
+//		b++;
+//	if (b >= lem->room_count)
+//		return  (1);
+	while (i < c && b < lem->room_count)
 	{
-		if (tab[i] == 2 && i != z)
+		if (tab[a][i] == 2 && i != z->x)
 			return (1);
+		while (o->next)
+		{
+			if (tab[o->x][b] && tab[o->x][b] == 1)
+			{
+				tab[o->x][b] = 2;
+				tab[b][o->x] = 2;
+				return (1);
+			}
+			o = o->next;
+		}
 		i++;
 	}
 	return (0);
@@ -356,7 +374,7 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 {
 	int sas;
 	int **tabb;
-	int o;
+	t_way *o;
 
 	tabb = copy_tab(tab, lem_in->room_count);
 	if (!way[q])
@@ -370,9 +388,8 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 		way[q]->head = way[q];
 	ft_printf("\n");
 	ft_print(tabb, lem_in->room_count);
-	o = way[q]->prev ? way[q]->prev->x : 0;
-	printf("(%d)\n", o);
-	if (p != *lem_in->end - '0' && p < lem_in->room_count && !p_busy(tabb[p], o, lem_in->room_count))
+	o = way[q]->prev ? way[q]->prev : NULL;
+	if (p != *lem_in->end - '0' && p < lem_in->room_count)
 	{
 		while (z < lem_in->room_count && tab[p][z] != 1)
 			z++;
@@ -385,9 +402,9 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 			if (way[q]->next || way[q]->prev)
 				way[sas] = copy_way(way[q]);
 			lem_in->count_ways = sas;
-			set_way(lem_in, way, p, z + 1, sas, tabb);
+			set_way(lem_in, way, p,  z + 1, sas, tabb);
 		}
-		if (tabb[p][z] == 1 && z < lem_in->room_count)
+		if (tabb[p][z] == 1 && z < lem_in->room_count  && !p_busy(tab, o, lem_in->room_count, lem_in, z, p) )
 		{
 			way[q]->x = p;
 			way[q]->y = z;
@@ -408,7 +425,7 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 			way[q] = NULL;
 		}
 	}
-	else if (p != *lem_in->end - '0' && way[q])
+	else if (p != *lem_in->end - '0')
 	{
 		free(way[q]);
 		way[q] = NULL;
@@ -425,15 +442,23 @@ void init_way(t_str *lem, t_way **way)
 		j = i + 1;
 		if (!way[i])
 		{
-			while (!way[j])
+			while (!way[j] && j < lem->count_ways)
 				j++;
-			way[i] = copy_way(way[j]);
-			free(way[j]);
-			way[j] = NULL;
-			lem->count_ways--;
+			if (way[j])
+			{
+				way[i] = copy_way(way[j]);
+				free(way[j]);
+				way[j] = NULL;
+				lem->count_ways--;
+			}
 		}
 		i++;
 	}
+}
+
+void	disjoint_ways()
+{
+
 }
 
 int		main(int ac, char **av)
@@ -451,6 +476,7 @@ int		main(int ac, char **av)
 	lem_in.count_ways = 0;
 	set_way(&lem_in, way, (*lem_in.start - '0'), 0, 0, lem_in.tab);
 	init_way(&lem_in, way);
+	disjoint_ways();
 	int i;
 	i = 0;
 	while (i < 41)
