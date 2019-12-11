@@ -437,7 +437,7 @@ void init_way(t_str *lem, t_way **way)
 	int *q;
 	int i;
 	int j;
-	while (i < lem->count_ways)
+	while (i <= lem->count_ways)
 	{
 		j = i + 1;
 		if (!way[i])
@@ -456,9 +456,86 @@ void init_way(t_str *lem, t_way **way)
 	}
 }
 
-void	disjoint_ways()
+int		must_insert(t_way ***disjoint_way, int q, t_way *way, t_str *lem)
 {
+	int j;
+	int p;
 
+	j = 0;
+	while (way)
+	{
+		j = 0;
+		while (disjoint_way[q][j])
+		{
+			disjoint_way[q][j] = disjoint_way[q][j]->head;
+			while (disjoint_way[q][j]->y != *lem->end - '0')
+			{
+				if (disjoint_way[q][j]->y == way->y)
+				{
+					return (0);
+				}
+				disjoint_way[q][j] = disjoint_way[q][j]->next;
+			}
+			j++;
+		}
+		way = way->next;
+	}
+	return (1);
+}
+
+t_way	***disjoint_ways(t_way **way, t_str *lem)
+{
+	t_way	***disjoint_ways;
+	int		i;
+	int		j;
+	int		q;
+	int		p;
+	int		l;
+	int		t;
+	int		flag;
+
+	flag = 0;
+	q = 0;
+	i = 0;
+	j = 0;
+	p = 0;
+	disjoint_ways = (t_way ***)malloc(sizeof(t_way **) * 40);
+	while (way[i])
+	{
+		disjoint_ways[q] = (t_way **)malloc(sizeof(t_way) * 40);
+		disjoint_ways[q][p] = copy_way(way[i]->head);
+		q++;
+//		disjoint_ways[q] = (t_way **)malloc(sizeof(t_way) * 40);
+		j = i;
+//		if (way[j])
+		{
+			l = q - 1;
+			t = 0;
+			while (l >= 0)
+			{
+				if (disjoint_ways[l][t] && must_insert(disjoint_ways, l, way[j]->head, lem))
+				{
+					disjoint_ways[q] = (t_way **)malloc(sizeof(t_way) * 40);
+					while (disjoint_ways[l][t])
+					{
+						disjoint_ways[q][t] = copy_way(disjoint_ways[l][t]);
+						t++;
+					}
+					disjoint_ways[q][t] = copy_way(way[j]);
+					q++;
+				}
+//				else
+//				{
+//					j++;
+//					continue;
+//				}
+				l--;
+			}
+			j++;
+		}
+		i++;
+	}
+	return (disjoint_ways);
 }
 
 int		main(int ac, char **av)
@@ -467,6 +544,7 @@ int		main(int ac, char **av)
 	t_way	**way;
 	t_way	*l;
 	int		count;
+	t_way ***disjoint_way;
 
 	lem_in.fd = open(av[1], O_RDONLY);
 	ft_read_map(&lem_in);
@@ -476,24 +554,42 @@ int		main(int ac, char **av)
 	lem_in.count_ways = 0;
 	set_way(&lem_in, way, (*lem_in.start - '0'), 0, 0, lem_in.tab);
 	init_way(&lem_in, way);
-	disjoint_ways();
+	disjoint_way = disjoint_ways(way, &lem_in);
 	int i;
+	int j;
 	i = 0;
-	while (i < 41)
+	while (disjoint_way[i])
 	{
-		if (way[i])
+		j = 0;
+		while (disjoint_way[i][j])
 		{
-			way[i] = way[i]->head;
-			while (way[i]->next)
+			disjoint_way[i][j] = disjoint_way[i][j]->head;
+			while (disjoint_way[i][j]->next)
 			{
-				printf("%d ->  %d\n", way[i]->x, way[i]->y);
-				way[i] = way[i]->next;
+				ft_printf("%d  ->   %d\n", disjoint_way[i][j]->x, disjoint_way[i][j]->y);
+				disjoint_way[i][j] = disjoint_way[i][j]->next;
 			}
+			j++;
 			printf("\n");
-			count++;
 		}
+		printf("----------------------\n");
 		i++;
 	}
+//	while (i < 41)
+//	{
+//		if (way[i])
+//		{
+//			way[i] = way[i]->head;
+//			while (way[i]->next)
+//			{
+//				printf("%d ->  %d\n", way[i]->x, way[i]->y);
+//				way[i] = way[i]->next;
+//			}
+//			printf("\n");
+//			count++;
+//		}
+//		i++;
+//	}
 	printf("%d\n", count);
 //	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[0][0], lem_in.arr_links[0][1]);
 //	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[1][0], lem_in.arr_links[1][1]);
