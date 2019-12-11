@@ -238,7 +238,6 @@ t_way *lst_new(int len)
 	if (len == 0)
 	{
 		lst = lst_create();
-		lst->flag = 0;
 		lst->next = lst;
 		lst->prev = lst;
 		return (lst);
@@ -335,6 +334,7 @@ t_way *copy_way(t_way *way)
 		q->head = q->prev->head;
 		head = head->next;
 	}
+	q->head->count = head->head->count;
 	return (q);
 }
 
@@ -381,6 +381,7 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 	{
 		way[q] = lst_create();
 		way[q]->head = way[q];
+		way[q]->count = 0;
 	}
 	if (way[q]->prev)
 		way[q]->head = way[q]->prev->head;
@@ -408,6 +409,7 @@ void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
 		{
 			way[q]->x = p;
 			way[q]->y = z;
+			way[q]->head->count++;
 			way[q]->next = lst_create();
 			way[q]->next->prev = way[q];
 			way[q] = way[q]->next;
@@ -524,11 +526,6 @@ t_way	***disjoint_ways(t_way **way, t_str *lem)
 					disjoint_ways[q][t] = copy_way(way[j]);
 					q++;
 				}
-//				else
-//				{
-//					j++;
-//					continue;
-//				}
 				l--;
 			}
 			j++;
@@ -566,7 +563,7 @@ int		main(int ac, char **av)
 			disjoint_way[i][j] = disjoint_way[i][j]->head;
 			while (disjoint_way[i][j]->next)
 			{
-				ft_printf("%d  ->   %d\n", disjoint_way[i][j]->x, disjoint_way[i][j]->y);
+				ft_printf("%d  ->   %d   kol: %d\n", disjoint_way[i][j]->x, disjoint_way[i][j]->y, disjoint_way[i][j]->head->count);
 				disjoint_way[i][j] = disjoint_way[i][j]->next;
 			}
 			j++;
