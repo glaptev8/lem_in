@@ -271,22 +271,6 @@ void	ft_print(int **tab, int x)
 	}
 }
 
-int		visited(t_str *lem_in, t_way **way, int p, int q)
-{
-	t_way *l;
-	l = way[q]->head;
-
-	while (l)
-	{
-		if (l->x == p)
-			return (1);
-		if (!l->next)
-			return (0);
-		l = l->next;
-	}
-	return (0);
-}
-
 int **copy_tab(int **tab, int x)
 {
 	int **tabb;
@@ -368,70 +352,6 @@ int 	p_busy(int **tab, t_way *z, int c, t_str *lem, int b, int a)
 		i++;
 	}
 	return (0);
-}
-
-void	set_way(t_str *lem_in, t_way **way, int p, int z, int q, int **tab)
-{
-	int sas;
-	int **tabb;
-	t_way *o;
-
-	tabb = copy_tab(tab, lem_in->room_count);
-	if (!way[q])
-	{
-		way[q] = lst_create();
-		way[q]->head = way[q];
-		way[q]->count = 0;
-	}
-	if (way[q]->prev)
-		way[q]->head = way[q]->prev->head;
-	else
-		way[q]->head = way[q];
-	ft_printf("\n");
-	ft_print(tabb, lem_in->room_count);
-	o = way[q]->prev ? way[q]->prev : NULL;
-	if (p != *lem_in->end - '0' && p < lem_in->room_count)
-	{
-		while (z < lem_in->room_count && tab[p][z] != 1)
-			z++;
-		if (way[q] && tabb[p][z] == 1 && z < lem_in->room_count)
-		{
-			sas = q;
-			while (way[sas])
-				sas++;
-			way[sas] = lst_create();
-			if (way[q]->next || way[q]->prev)
-				way[sas] = copy_way(way[q]);
-			lem_in->count_ways = sas;
-			set_way(lem_in, way, p,  z + 1, sas, tabb);
-		}
-		if (tabb[p][z] == 1 && z < lem_in->room_count  && !p_busy(tab, o, lem_in->room_count, lem_in, z, p) )
-		{
-			way[q]->x = p;
-			way[q]->y = z;
-			way[q]->head->count++;
-			way[q]->next = lst_create();
-			way[q]->next->prev = way[q];
-			way[q] = way[q]->next;
-			way[q]->head = way[q]->prev->head;
-			tabb[p][z] = 2;
-			tabb[z][p] = 2;
-			ft_printf("\n");
-			ft_print(tabb, lem_in->room_count);
-			p = z;
-			set_way(lem_in, way, p, 0, q, tabb);
-		}
-		else if (p != *lem_in->end - '0')
-		{
-			free(way[q]);
-			way[q] = NULL;
-		}
-	}
-	else if (p != *lem_in->end - '0')
-	{
-		free(way[q]);
-		way[q] = NULL;
-	}
 }
 
 void init_way(t_str *lem, t_way **way)
@@ -535,6 +455,221 @@ t_way	***disjoint_ways(t_way **way, t_str *lem)
 	return (disjoint_ways);
 }
 
+int		visited(int y, t_way *way)
+{
+	way = way->head;
+	while (way)
+	{
+		if (way->x == y)
+			return (1);
+		if (!way->next)
+			return (0);
+		way = way->next;
+	}
+	return (0);
+}
+
+int		is_way(int x, int y, t_not_ways	**way)
+{
+	int i;
+
+	i = 0;
+	while (way[i]->x >= 0)
+	{
+		if (way[i]->x == x && way[i]->y == y)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	ft_print_no_ways(t_not_ways **ways)
+{
+	int i;
+	i = 0;
+	while(ways[i]->x >= 0)
+	{
+		ft_printf("%d   %d\n", ways[i]->x, ways[i]->y);
+		i++;
+	}
+}
+
+void	init_not_ways(t_not_ways **no_ways)
+{
+	int i = 0;
+
+	while (i < 99)
+	{
+		no_ways[i] = (t_not_ways *)malloc(sizeof(t_not_ways) * 1);
+		no_ways[i]->x = -2;
+		i++;
+	}
+}
+
+int not_ways(int x, t_not_ways **no_ways, t_str *lem)
+{
+	int i;
+
+	i = 0;
+	while (i < lem->room_count)
+	{
+		if (lem->tab[x][i] == 1)
+		{
+			if (is_way(x, i, no_ways))
+			{
+				i++;
+				continue;
+			}
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	clear_way(int x, t_not_ways **no_ways, int *n)
+{
+	int i;
+	int j;
+
+	j = 0;
+	i = 0;
+	while (i < 98)
+	{
+		if (no_ways[i]->x == x)
+		{
+			j = i;
+			while (j < 97)
+			{
+				no_ways[j] = NULL;
+				no_ways[j] = no_ways[j + 1];
+				j++;
+			}
+			(*n)--;
+			continue;
+		}
+//		if(no_ways[i + 1] && no_ways[i + 1]->x == no_ways[i]->x && no_ways[i + 1]->y == no_ways[i]->y)
+//		{
+//			no_ways[i] = NULL;
+//			no_ways[i] = no_ways[i + 1];
+//		}
+		i++;
+	}
+}
+
+void	set_way(t_str *lem_in, t_way **way)
+{
+	int x;
+	int y;
+	t_not_ways **no_ways;
+	int q;
+	int k = 0;
+	q = 0;
+	int n = 0;
+	no_ways = (t_not_ways **)malloc(sizeof(t_not_ways *) * 1000);
+	int i;
+	i = 0;
+	init_not_ways(no_ways);
+	y = 0;
+	x = ft_atoi(lem_in->start);
+	while (k < 5)
+	{
+		while (x != ft_atoi(lem_in->end))
+		{
+			if (!way[q])
+			{
+				way[q] = lst_create();
+				way[q]->this = way[q];
+				way[q]->head = way[q];
+			}
+			while (lem_in->tab[x][y] != 1 && y < lem_in->room_count)
+				y++;
+			if ((y == x || visited(y, way[q]) || !is_way(x, y, no_ways)) && y < lem_in->room_count)
+			{
+				y++;
+				continue;
+			}
+			if (lem_in->tab[x][y] == 1 && y < lem_in->room_count)
+			{
+				if (y == ft_atoi(lem_in->end) && !way[q]->next)
+				{
+					way[q]->next = lst_create();
+					way[q]->next->prev = way[q];
+					way[q]->next->this = way[q]->next;
+					way[q]->next->head = way[q]->head;
+					way[q] = way[q]->next;
+				}
+				if (way[q]->next)
+					way[q] = way[q]->next;
+				way[q]->x = x;
+				way[q]->y = y;
+				way[q]->next = lst_create();
+				way[q]->next->prev = way[q];
+				way[q]->next->this = way[q]->next;
+				way[q]->next->head = way[q]->head;
+				if (y == ft_atoi(lem_in->end))
+				{
+					free(way[q]->next);
+					way[q]->next = NULL;
+				}
+				y = 0;
+			}
+			if (y >= lem_in->room_count)
+			{
+				ft_print_no_ways(no_ways);
+				printf("-------------\n");
+				no_ways[n]->x = way[q]->x;
+				no_ways[n]->y = way[q]->y;
+				n++;
+				if (way[q]->next)
+				{
+					way[q] = way[q]->prev;
+					free(way[q]->next);
+					way[q]->next = NULL;
+				}
+				else
+				{
+					free(way[q]);
+					way[q] = NULL;
+				}
+				y = 0;
+				if (way[q])
+					x = way[q]->y;
+				else
+					x = 0;
+				ft_print_no_ways(no_ways);
+				printf("-------------\n");
+				if (not_ways(no_ways[n - 1]->y, no_ways, lem_in))
+				{
+					clear_way(no_ways[n - 1]->y, no_ways, &n);
+				}
+				ft_print_no_ways(no_ways);
+				printf("-------------\n");
+				continue;
+			}
+			x = way[q]->y;
+		}
+		no_ways[n]->x = way[q]->x;
+		no_ways[n]->y = way[q]->y;
+		n++;
+		ft_print_no_ways(no_ways);
+		printf("-------------\n");
+		if (not_ways(no_ways[n - 1]->x, no_ways, lem_in))
+		{
+			no_ways[n]->x = way[q]->prev->x;
+			no_ways[n]->y = way[q]->prev->y;
+			clear_way(no_ways[n - 1]->x, no_ways, &n);
+			n++;
+		}
+		ft_print_no_ways(no_ways);
+		printf("-------------\n");
+		x = 0;
+		q++;
+		k++;
+	}
+}
+
+
 int		main(int ac, char **av)
 {
 	t_str lem_in;
@@ -547,31 +682,29 @@ int		main(int ac, char **av)
 	ft_read_map(&lem_in);
 	table(&lem_in);
 	way = (t_way **)malloc(sizeof(t_way) * 40);
-	l = way[0];
-	lem_in.count_ways = 0;
-	set_way(&lem_in, way, (*lem_in.start - '0'), 0, 0, lem_in.tab);
-	init_way(&lem_in, way);
-	disjoint_way = disjoint_ways(way, &lem_in);
-	int i;
-	int j;
-	i = 0;
-	while (disjoint_way[i])
-	{
-		j = 0;
-		while (disjoint_way[i][j])
-		{
-			disjoint_way[i][j] = disjoint_way[i][j]->head;
-			while (disjoint_way[i][j]->next)
-			{
-				ft_printf("%d  ->   %d   kol: %d\n", disjoint_way[i][j]->x, disjoint_way[i][j]->y, disjoint_way[i][j]->head->count);
-				disjoint_way[i][j] = disjoint_way[i][j]->next;
-			}
-			j++;
-			printf("\n");
-		}
-		printf("----------------------\n");
-		i++;
-	}
+	set_way(&lem_in, way);
+//	init_way(&lem_in, way);
+//	disjoint_way = disjoint_ways(way, &lem_in);
+//	int i;
+//	int j;
+//	i = 0;
+//	while (disjoint_way[i])
+//	{
+//		j = 0;
+//		while (disjoint_way[i][j])
+//		{
+//			disjoint_way[i][j] = disjoint_way[i][j]->head;
+//			while (disjoint_way[i][j]->next)
+//			{
+//				ft_printf("%d  ->   %d   kol: %d\n", disjoint_way[i][j]->x, disjoint_way[i][j]->y, disjoint_way[i][j]->head->count);
+//				disjoint_way[i][j] = disjoint_way[i][j]->next;
+//			}
+//			j++;
+//			printf("\n");
+//		}
+//		printf("----------------------\n");
+//		i++;
+//	}
 //	while (i < 41)
 //	{
 //		if (way[i])

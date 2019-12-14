@@ -55,6 +55,12 @@ typedef	struct	s_way
 	struct s_way *this;
 }				t_way;
 
+typedef struct	s_top
+{
+	int		x;
+	int		y;
+}				t_not_ways;
+
 //t_str lem_in;
 
 int				ft_atoi(const char *src);
