@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:12:37 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/10 16:31:04 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/12 10:05:22 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,28 @@ typedef struct s_str
 	int		room_count;
 	int 	link_count;
 	char	*buf;
-	char 	**tab_comp;
 	int 	fd;
-//	int 	**clone_arr_room[INT16_MAX];
-	int 	clone_arr_links[INT16_MAX][2];
+	int		**tab;
+	int		count_ways;
 }	t_str;
+
+typedef	struct	s_way
+{
+	int		x;
+	int		y;
+	int		count;
+	struct s_way *head;
+	struct s_way *next;
+	struct s_way *prev;
+	struct s_way *this;
+}				t_way;
 
 //t_str lem_in;
 
 int				ft_atoi(const char *src);
 int				ft_printf(const char *format, ...);
 int				get_next_line(const int fd, char **line);
-void 			ft_exit(t_str *lem_in, int flag);
+void 			ft_exit(t_str *lem_in);
 int				ft_isprint(int c);
 int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strdup(const char *src);
@@ -58,6 +68,5 @@ void			ft_start_end(char *str, t_str *lem_in);
 char			**ft_strsplit(char const *s, char c);
 void			check_room(t_str *lem_in);
 int				ft_isdigit(int c);
-void			ft_tab_comp(t_str *lem_in);
 
 #endif
