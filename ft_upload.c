@@ -412,11 +412,11 @@ int		main(int ac, char **av)
 //		ft_sort_link(rooms, lem_in.link_count);
 		for (int j = 0; j < lem_in.room_count; j++)
 			printf ("room[%d] = %s\n", j, rooms[j].arr_room[0]);
-/*	for (int j = 0; j < lem_in.link_count; j++)
+	for (int j = 0; j < lem_in.link_count; j++)
 			for (int x = 0; x < rooms[j].size_link_arr; x++)
 				printf ("room[%d] = \"%s\"; link[%x] = %s\n", j, rooms[j].arr_room[0], x, rooms[rooms[j].arr_link[x]].arr_room[0]);
-		ft_bfs_alg(&lem_in, rooms);
-		*/
+//		ft_bfs_alg(&lem_in, rooms);
+
 //		printf ("room[7] = %d\n", rooms[7].arr_link[0]);
 
 
@@ -424,8 +424,15 @@ int		main(int ac, char **av)
 		ft_printf(GREEN("Ok\n"));
 //		ft_exit(&lem_in, 0);
 	}
-
 	else
 		ft_exit(&lem_in, 1);
+//	printf("link = %s\n", rooms[rooms[7].arr_link[1]].arr_room[0]);
+	set_ways(&lem_in, rooms);
+//	printf("\n\n");
+//	for (int j = 0; j < lem_in.room_count; j++)
+//		printf ("room[%d] = %s\n", j, rooms[j].arr_room[0]);
+//	for (int j = 0; j < lem_in.room_count; j++)
+//		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room[0], rooms[j].lvl);
+		
 }
 

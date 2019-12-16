@@ -6,6 +6,10 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(lem_in
 		ft_exit.c
 		ft_upload.c
+		sort_char.c
+		tab_comp.c
+		binary_search.c
+		alg_bfs.c
 		header.h
 		)
 target_link_libraries(lem_in LINK_PUBLIC ${CMAKE_SOURCE_DIR}/libft.a)

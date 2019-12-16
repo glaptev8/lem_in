@@ -6,17 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/rmarni/Desktop/gleb_alex/ft_exit.c
+/Users/tmelia/Desktop/lem_in/alg_bfs.c
 header.h
-/Users/rmarni/Desktop/gleb_alex/header.h
+/Users/tmelia/Desktop/lem_in/header.h
 
-/Users/rmarni/Desktop/gleb_alex/ft_upload.c
-header.h
-/Users/rmarni/Desktop/gleb_alex/header.h
-header.h
-/Users/rmarni/Desktop/gleb_alex/header.h
-
-/Users/rmarni/Desktop/gleb_alex/header.h
+/Users/tmelia/Desktop/lem_in/header.h
 stdio.h
 -
 stdarg.h
