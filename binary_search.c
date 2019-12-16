@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*   binary_search.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/03 17:58:56 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/13 12:38:00 by rmarni           ###   ########.fr       */
+/*   Created: 2019/12/14 12:40:20 by rmarni            #+#    #+#             */
+/*   Updated: 2019/12/14 14:29:50 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void 	ft_exit(t_str *lem_in, int flag)
+int ft_binary_search(t_room *rooms, int start, int end, char *str)
 {
+	int comp;
+	int res;
 	int i;
-	int j;
 
 	i = 0;
-	j = 0;
-/*	while (i < lem_in->room_count)
+	res = (end + start) / 2;
+	comp = ft_strcmp(rooms[res].arr_room[0], str);
+	if (!comp)
+		return (res);
+	while (comp)
 	{
-		free(lem_in->arr_room[i][0]);
-		free(lem_in->arr_room[i][1]);
-
+		res = (end + start) / 2;
+		comp = ft_strcmp(rooms[res].arr_room[0], str);
+		if (i > 20)
+		{
+			ft_printf (RED("ERROR\n"));
+			exit(0);
+		}
+		if (comp > 0)
+			end = res;
+		else
+			start = res;
 		i++;
 	}
-	while (j < lem_in->link_count)
-	{
-		free(lem_in->arr_links[j][0]);
-		free(lem_in->arr_links[j][1]);
-		j++;
-	}
-*/
-//	free(lem_in->arr_room);
-	if (flag)
-		ft_printf(RED("Error\n"));
-	exit(0);
+	return (res);
 }

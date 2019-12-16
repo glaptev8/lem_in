@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:12:37 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/05 10:15:04 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/12 10:05:22 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,6 @@ typedef	struct	s_way
 	struct s_way *prev;
 	struct s_way *this;
 }				t_way;
-
-typedef struct	s_top
-{
-	int		x;
-	int		y;
-}				t_not_ways;
 
 //t_str lem_in;
 

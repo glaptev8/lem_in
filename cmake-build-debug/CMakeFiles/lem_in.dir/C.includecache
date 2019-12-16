@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/rmarni/Desktop/gleb_alex/ft_exit.c
+header.h
+/Users/rmarni/Desktop/gleb_alex/header.h
+
+/Users/rmarni/Desktop/gleb_alex/ft_upload.c
+header.h
+/Users/rmarni/Desktop/gleb_alex/header.h
+header.h
+/Users/rmarni/Desktop/gleb_alex/header.h
+
+/Users/rmarni/Desktop/gleb_alex/header.h
+stdio.h
+-
+stdarg.h
+-
+unistd.h
+-
+wchar.h
+-
+stdlib.h
+-
+fcntl.h
+-
+

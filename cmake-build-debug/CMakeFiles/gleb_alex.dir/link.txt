@@ -1,0 +1,1 @@
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -g -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/gleb_alex.dir/ft_exit.c.o CMakeFiles/gleb_alex.dir/ft_upload.c.o  -o gleb_alex 
