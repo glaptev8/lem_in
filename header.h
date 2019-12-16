@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:12:37 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/14 15:21:41 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/16 16:20:50 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@
 # define CYAN(string)			"\x1b[36m" string "\x1b[0m"
 # define GREY(string)			"\x1b[37m" string "\x1b[0m"
 
+typedef struct s_way
+{
+	int		way[400];
+	int 	size_way;
+}				t_way;
+
 typedef struct s_room
 {
 	char	lvl;
@@ -40,25 +46,15 @@ typedef struct s_room
 typedef struct s_str
 {
 	int		q_lem;
-//	int 	tmp;
 	int		room_count;
-	char	*start;
-	char	*end;
-	int 	c_start;					// int for start;
-	int 	c_end;						// int for end;
-	char	**arr_room[INT16_MAX];
-	char	**arr_links[INT16_MAX];
-
-//	char 	*link_test[INT16_MAX];
-//	t_room	*rooms[10];
+	char	*buf_start;
+	char	*buf_end;
+	int 	start;
+	int 	end;
 
 	int 	link_count;
 	char	*buf;
-	char 	**tab_comp;
 	int 	fd;
-//	int 	**clone_arr_room[INT16_MAX];
-	int 	clone_arr_links[INT16_MAX][2];
-
 }	t_str;
 
 //t_str lem_in;
@@ -66,7 +62,7 @@ typedef struct s_str
 int				ft_atoi(const char *src);
 int				ft_printf(const char *format, ...);
 int				get_next_line(const int fd, char **line);
-void 			ft_exit(t_str *lem_in, int flag);
+void 			ft_exit(t_str *lem_in, t_room *rooms, int flag);
 int				ft_isprint(int c);
 int				ft_strcmp(const char *s1, const char *s2);
 char			*ft_strdup(const char *src);
