@@ -326,38 +326,6 @@ t_way *copy_way(t_way *way)
 	return (q);
 }
 
-int 	p_busy(int **tab, t_way *z, int c, t_str *lem, int b, int a)
-{
-	int i;
-	t_way *o;
-	
-	if (!z)
-		return (0);
-	o = z->head;
-	i = 0;
-//	while (lem->tab[a][b] != 1 && b < lem->room_count)
-//		b++;
-//	if (b >= lem->room_count)
-//		return  (1);
-	while (i < c && b < lem->room_count)
-	{
-		if (tab[a][i] == 2 && i != z->x)
-			return (1);
-		while (o->next)
-		{
-			if (tab[o->x][b] && tab[o->x][b] == 1)
-			{
-				tab[o->x][b] = 2;
-				tab[b][o->x] = 2;
-				return (1);
-			}
-			o = o->next;
-		}
-		i++;
-	}
-	return (0);
-}
-
 void init_way(t_str *lem, t_way **way)
 {
 	int *q;
@@ -565,6 +533,31 @@ void	clear_way(int x, t_not_ways **no_ways, int *n)
 //	no_ways[i]->x = -2;
 }
 
+int 	p_busy(t_str *lem, t_way *way, int y)
+{
+	t_way *tmp;
+
+	tmp = copy_way(way);
+	tmp = tmp->head;
+	while (tmp)
+	{
+		if (tmp->x >= 0)
+		{
+			if (lem->tab[tmp->x][y] == 1)
+				return (1);
+			if (tmp->next)
+				tmp = tmp->next;
+			else
+				return (0);
+		}
+		else if (tmp->next)
+			tmp = tmp->next;
+		else
+			return (0);
+	}
+	return (0);
+}
+
 void	set_way(t_str *lem_in, t_way **way)
 {
 	int x;
@@ -599,7 +592,7 @@ void	set_way(t_str *lem_in, t_way **way)
 			}
 			while (lem_in->tab[x][y] != 1 && y < lem_in->room_count)
 				y++;
-			if ((y == x || visited(y, way[q]) || !is_way(x, y, no_ways)) && y < lem_in->room_count)
+			if ((y == x || visited(y, way[q]) || !is_way(x, y, no_ways) || p_busy(lem_in, way[q], y)) && y < lem_in->room_count)
 			{
 				y++;
 				continue;
@@ -689,6 +682,11 @@ void	set_way(t_str *lem_in, t_way **way)
 //		}
 		if (not_ways(ft_atoi(lem_in->start), no_ways, lem_in, -5))
 			break;
+		if (q == 1500000)
+		{
+			ft_print_no_ways(no_ways);
+			printf("-------------\n");
+		}
 		no_ways[n]->x = way[q]->x;
 		no_ways[n]->y = way[q]->y;
 		n++;
@@ -732,7 +730,7 @@ int		main(int ac, char **av)
 	lem_in.fd = open(av[1], O_RDONLY);
 	ft_read_map(&lem_in);
 	table(&lem_in);
-	way = (t_way **)malloc(sizeof(t_way) * 1000);
+	way = (t_way **)malloc(sizeof(t_way) * 1500000);
 	set_way(&lem_in, way);
 //	init_way(&lem_in, way);
 //	disjoint_way = disjoint_ways(way, &lem_in);
@@ -757,10 +755,10 @@ int		main(int ac, char **av)
 //		i++;
 //	}
 //printf("\n\n\n");
-//	while (i < 200)
-//	{
-//		if (way[i])
-//		{
+	while (i < 10000)
+	{
+		if (way[i])
+		{
 //			way[i] = way[i]->head;
 //			while (way[i])
 //			{
@@ -771,11 +769,11 @@ int		main(int ac, char **av)
 //					break;
 //			}
 //			printf("\n");
-//			count++;
-//		}
-//		i++;
-//	}
-//	printf("%d\n", count);
+			count++;
+		}
+		i++;
+	}
+	printf("%d\n", count);
 //	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[0][0], lem_in.arr_links[0][1]);
 //	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[1][0], lem_in.arr_links[1][1]);
 //	printf("lem.start = %s lem.end = %s\n", lem_in.arr_links[2][0], lem_in.arr_links[2][1]);
