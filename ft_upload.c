@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 17:00:58 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/16 17:56:22 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/17 11:36:59 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 **	7. End should has link;										ok!
 **	8. First parameter only number								ok!
 */
-
-void	check_room(t_str *lem_in)
+/*
+void	check_room(char *str)
 {
 	int i;
 
@@ -46,7 +46,7 @@ void	check_room(t_str *lem_in)
 		i++;
 	}
 }
-
+*/
 
 void		ft_start_end_norma(char *str, t_str *lem_in, t_room *rooms, int i)
 {
@@ -54,6 +54,7 @@ void		ft_start_end_norma(char *str, t_str *lem_in, t_room *rooms, int i)
 	{
 		free(lem_in->buf);
 		get_next_line(lem_in->fd, &lem_in->buf);
+		ft_printf("%s\n", lem_in->buf);
 		while (ft_isprint(lem_in->buf[i]))
 			i++;
 		if (i == 0)
@@ -64,7 +65,7 @@ void		ft_start_end_norma(char *str, t_str *lem_in, t_room *rooms, int i)
 		lem_in->room_count++;
 		return ;
 	}
-	ft_exit(lem_in, rooms, 1);
+//	ft_exit(lem_in, rooms, 1);
 }
 
 void		ft_start_end(char *str, t_str *lem_in, t_room *rooms)
@@ -83,6 +84,7 @@ void		ft_start_end(char *str, t_str *lem_in, t_room *rooms)
 	{
 		free(lem_in->buf);
 		get_next_line(lem_in->fd, &lem_in->buf);
+		ft_printf("%s\n", lem_in->buf);
 		while (ft_isprint(lem_in->buf[i]))
 			i++;
 		if (i == 0)
@@ -108,7 +110,7 @@ void		ft_slash_zero(t_room *rooms, int i, char c)
 		j++;
 	}
 }
-/**
+
 int			is_room(char *str, t_str *lem_in, t_room *rooms)
 {
 	if (str[0] == '#')
@@ -117,12 +119,12 @@ int			is_room(char *str, t_str *lem_in, t_room *rooms)
 			ft_start_end(str, lem_in, rooms);
 		return (0);
 	}
-	check_room(str)
+//	check_room(str)
 	rooms[lem_in->room_count].arr_room[0] = ft_strdup(str);
 	ft_slash_zero(rooms, lem_in->room_count, ' ');
 	return (1);
 }
-**/
+
 
 void		ft_slash_zero_link(char *str, char c)
 {
@@ -152,6 +154,8 @@ void		add_link_room_num(t_room *rooms, t_str *lem_in)
 	int		link_room;
 	int		link_room2;
 
+	if (lem_in->room_count == 0)
+		ft_exit(lem_in, rooms, 1);
 	ft_slash_zero_link(lem_in->buf, '-');
 	link_room = ft_binary_search(rooms, 0, lem_in->room_count,
 	lem_in->buf);
@@ -179,11 +183,13 @@ int			is_links(t_str *lem_in, t_room *rooms)
 	free(lem_in->buf);
 	while (get_next_line(lem_in->fd, &lem_in->buf))
 	{
+		ft_printf("%s\n", lem_in->buf);
 		if (lem_in->buf[0] != '#')
 		{
 			lem_in->link_count++;
 			add_link_room_num(rooms, lem_in);
 		}
+
 		free(lem_in->buf);
 	}
 	lem_in->link_count++;
@@ -209,16 +215,48 @@ void		ft_check_q_lem(t_str *lem_in, t_room *rooms)
 
 void		ft_read_map(t_str *lem_in, t_room *rooms)
 {
-	get_next_line(lem_in->fd, &lem_in->buf);
+	if (get_next_line(lem_in->fd, &lem_in->buf) < 1)
+		ft_exit(lem_in, rooms, 1);
+	ft_printf("%s\n", lem_in->buf);
 	ft_check_q_lem(lem_in, rooms);
+
 	while (get_next_line(lem_in->fd, &lem_in->buf))
 	{
+		ft_printf("%s\n", lem_in->buf);
 		if (is_links(lem_in, rooms))
 			return ;
 		if (is_room(lem_in->buf, lem_in, rooms))
 			lem_in->room_count++;
 		free(lem_in->buf);
 	}
+}
+
+void		usage(t_str *lem_in, t_room *rooms)
+{
+	ft_printf(GREEN("Please upload the valid Lem-in farm:\n\n%s%s"), RESET("As example:\n"), "6\t\t\t \\\\ Num of Ants\n");
+	ft_exit(lem_in, rooms, 0);
+}
+
+void		check_bfr_alg(t_str *lem_in, t_room *rooms)
+{
+	int i;
+
+	i = -1;
+	if (lem_in->buf_start == NULL || lem_in->buf_end == NULL)
+		ft_exit(lem_in, rooms, 1);
+	while (lem_in->buf_start[++i] != '\0')
+		if (lem_in->buf_start[i] == ' ')
+			lem_in->buf_start[i] = '\0';
+	i = -1;
+	while (lem_in->buf_end[++i] != '\0')
+		if (lem_in->buf_end[i] == ' ')
+			lem_in->buf_end[i] = '\0';
+	lem_in->start = ft_binary_search(rooms, 0, lem_in->room_count, lem_in->buf_start);
+	lem_in->end = ft_binary_search(rooms, 0, lem_in->room_count, lem_in->buf_end);
+	i = 0;
+	while (++i < lem_in->room_count)
+		if (!ft_strcmp(rooms[i].arr_room[0], rooms[i - 1].arr_room[0]))
+			ft_exit(lem_in, rooms, 1);
 }
 
 int			main(int ac, char **av)
@@ -228,19 +266,22 @@ int			main(int ac, char **av)
 
 	lem_in.room_count = 0;
 	lem_in.link_count = 0;
-	if (ac == 2)
+	lem_in.buf_start = NULL;
+	lem_in.buf_end = NULL;
+
+	if (ac > 1)
+		usage(&lem_in, rooms);
+	else
 	{
-		lem_in.fd = open(av[1], O_RDONLY);
+		lem_in.fd = 0;// open(av[1], O_RDONLY);
 		ft_read_map(&lem_in, rooms);
-		close(lem_in.fd);
+		check_bfr_alg(&lem_in, rooms);
 /*
 		for (int j = 0; j < lem_in.room_count; j++)
 			for (int x = 0; x < rooms[j].size_link_arr; x++)
 				printf ("room[%d] = \"%s\"; link[%x] = %s\n", j, rooms[j].arr_room[0], x, rooms[rooms[j].arr_link[x]].arr_room[0]);
-		ft_printf(GREEN("Ok\n"));
-*/		ft_exit(&lem_in, rooms, 0);
+*/		ft_printf(GREEN("Ok\n"));
+		ft_exit(&lem_in, rooms, 0);
 	}
-	else
-		ft_exit(&lem_in, rooms, 1);
 }
 //	printf ("room[7] = \"%s\", room[7].link[0] = %d, room[7].link[1] = %d;\n", rooms[7].arr_room[0], rooms[7].arr_link[0], rooms[7].arr_link[1]);

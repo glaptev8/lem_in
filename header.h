@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:12:37 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/16 16:20:50 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/17 09:49:05 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define MAGENTA(string)		"\x1b[35m" string "\x1b[0m"
 # define CYAN(string)			"\x1b[36m" string "\x1b[0m"
 # define GREY(string)			"\x1b[37m" string "\x1b[0m"
+# define RESET(string)			"\x1b[0m" string "\x1b[0m"
 
 typedef struct s_way
 {
@@ -76,7 +77,7 @@ t_room 			*ft_sort_struct(t_room *room, int arr_size);
 void 			ft_slash_zero(t_room *rooms, int i, char c);
 t_room 			*ft_sort_link(t_room *room, int arr_size);
 void 			ft_bfs_alg(t_str *lem_in, t_room *rooms);
-int 			ft_binary_search(t_room *rooms, int num, int mid, char *str);
+int 			ft_binary_search(t_room *rooms, int start, int end, char *str);
 void			ft_zero_struck(t_room *rooms, int arr_size);
 
 
