@@ -64,9 +64,9 @@ int		give_prev_room_min_level_not_visited(t_room *room, int pos, int visit)
  	i = 0;
 	while (i < room[pos].size_link_arr)
 	{
-		if (room[room[pos].arr_link[i]].lvl < min)
+		if (room[room[pos].arr_link[i]].lvl <= min)
 		{
-			j = i;
+			j = room[pos].arr_link[i];
 			min = room[room[pos].arr_link[i]].lvl;
 		}
 		i++;
@@ -131,15 +131,30 @@ void	set_ways(t_str *lem, t_room *rooms)
 	}
 	q = end;
 	i = 0;
+	int j = 0;
 	while (rooms[q].lvl != 0)
 	{
-		way[i] = (t_way *) malloc(sizeof(t_way));
+		if (!way[i])
+		{
+			way[i] = (t_way *) malloc(sizeof(t_way));
+			way[i]->next = NULL;
+			way[i]->prev = NULL;
+		}
+		way[i]->head = NULL;
 		way[i]->y = q;
 		q = give_prev_room_min_level_not_visited(rooms, q, visit);
 		rooms[q].visit = visit;
 		way[i]->x = q;
-		way[i]->prev = (t_way *) malloc(sizeof(t_way) * 1);
-		way[i]->prev->next = way[i];
-		way[i] = way[i]->prev;
+		if (rooms[q].lvl != 0)
+		{
+			way[i]->prev = (t_way *) malloc(sizeof(t_way) * 1);
+			way[i]->prev->prev= NULL;
+			way[i]->prev->next = way[i];
+			way[i] = way[i]->prev;
+		}
+		while (j < rooms[q].size_link_arr)
+		{
+			rooms[rooms[q].arr_link[j]]
+		}
 	}
 }
