@@ -431,8 +431,8 @@ int		main(int ac, char **av)
 //	printf("\n\n");
 //	for (int j = 0; j < lem_in.room_count; j++)
 //		printf ("room[%d] = %s\n", j, rooms[j].arr_room[0]);
-//	for (int j = 0; j < lem_in.room_count; j++)
-//		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room[0], rooms[j].lvl);
+	for (int j = 0; j < lem_in.room_count; j++)
+		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room[0], rooms[j].lvl);
 		
 }
 
