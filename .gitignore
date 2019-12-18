@@ -1,0 +1,6 @@
+.idea
+.DS_Store
+a.out
+cmake-build-debug
+lem-in_generator
+a.out.dSYM
