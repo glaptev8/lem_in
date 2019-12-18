@@ -53,7 +53,7 @@ typedef struct s_str
 	int 	start;
 	int 	end;
 	int		count_ways;
-	int		*len_ways;
+	int		len_ways[100];
 	int 	link_count;
 	char	*buf;
 	int 	fd;
@@ -96,6 +96,6 @@ t_room 			*ft_sort_link(t_room *room, int arr_size);
 void 			ft_bfs_alg(t_str *lem_in, t_room *rooms);
 int 			ft_binary_search(t_room *rooms, int start, int end, char *str);
 void			ft_zero_struck(t_room *rooms, int arr_size);
-t_way 			**set_ways(t_str *lem, t_room *rooms);
+int 			**set_ways(t_str *lem, t_room *rooms);
 
 #endif

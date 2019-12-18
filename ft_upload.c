@@ -263,27 +263,31 @@ int			main(int ac, char **av)
 {
 	t_str	lem_in;
 	t_room	rooms[5000];
-	t_way	**way;
+	int	**way;
 	lem_in.room_count = 0;
 	lem_in.link_count = 0;
 	lem_in.buf_start = NULL;
 	lem_in.buf_end = NULL;
 
-	if (ac > 1)
-		usage(&lem_in, rooms);
-	else
+//	if (ac > 1)
+//		usage(&lem_in, rooms);
+//	else
 	{
-		lem_in.fd = 0;// open(av[1], O_RDONLY);
+		lem_in.fd = open(av[1], O_RDONLY);// open(av[1], O_RDONLY);
 		ft_read_map(&lem_in, rooms);
 		check_bfr_alg(&lem_in, rooms);
-/*
+
 		for (int j = 0; j < lem_in.room_count; j++)
 			for (int x = 0; x < rooms[j].size_link_arr; x++)
 				printf ("room[%d] = \"%s\"; link[%x] = %s\n", j, rooms[j].arr_room, x, rooms[rooms[j].arr_link[x]].arr_room);
-*/		ft_printf(GREEN("Ok\n"));
+		ft_printf(GREEN("Ok\n"));
 //		ft_exit(&lem_in, rooms, 0);
 	}
 //	printf("\n\n%d   %d\n", lem_in.start, lem_in.end);
 	way = set_ways(&lem_in, rooms);
+	int j = 0;
+	for (int j = 0; j < lem_in.room_count; j++)
+		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room, rooms[j].lvl);
+	ft_exit(&lem_in, rooms, 0);
 }
 //	printf ("room[7] = \"%s\", room[7].link[0] = %d, room[7].link[1] = %d;\n", rooms[7].arr_room, rooms[7].arr_link[0], rooms[7].arr_link[1]);
