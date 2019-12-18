@@ -40,12 +40,12 @@ t_room *ft_sort_struct(t_room *room, int arr_size)
 		while (--j)
 		{
 
-			r = ft_strcmp(room[j].arr_room[0], room[j - 1].arr_room[0]);
+			r = ft_strcmp(room[j].arr_room, room[j - 1].arr_room);
 			if (r < 0)
 			{
-				tmp.arr_room[0] = room[j].arr_room[0];
-				room[j].arr_room[0] = room[j - 1].arr_room[0];
-				room[j - 1].arr_room[0] = tmp.arr_room[0];
+				tmp.arr_room = room[j].arr_room;
+				room[j].arr_room = room[j - 1].arr_room;
+				room[j - 1].arr_room = tmp.arr_room;
 
 			}
 		}

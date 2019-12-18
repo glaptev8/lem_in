@@ -20,13 +20,13 @@ int ft_binary_search(t_room *rooms, int start, int end, char *str)
 
 	i = 0;
 	res = (end + start) / 2;
-	comp = ft_strcmp(rooms[res].arr_room[0], str);
+	comp = ft_strcmp(rooms[res].arr_room, str);
 	if (!comp)
 		return (res);
 	while (comp)
 	{
 		res = (end + start) / 2;
-		comp = ft_strcmp(rooms[res].arr_room[0], str);
+		comp = ft_strcmp(rooms[res].arr_room, str);
 		if (i > 20)
 		{
 			ft_printf (RED("ERROR\n"));
