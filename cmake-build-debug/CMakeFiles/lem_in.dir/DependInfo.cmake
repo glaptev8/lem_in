@@ -4,12 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/tmelia/Desktop/lem_in/alg_bfs.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/alg_bfs.c.o"
-  "/Users/tmelia/Desktop/lem_in/binary_search.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/binary_search.c.o"
-  "/Users/tmelia/Desktop/lem_in/ft_exit.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/ft_exit.c.o"
-  "/Users/tmelia/Desktop/lem_in/ft_upload.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/ft_upload.c.o"
-  "/Users/tmelia/Desktop/lem_in/sort_char.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/sort_char.c.o"
-  "/Users/tmelia/Desktop/lem_in/tab_comp.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/tab_comp.c.o"
+  "/Users/rmarni/Desktop/gleb_alex/alg_bfs.c" "/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/lem_in.dir/alg_bfs.c.o"
+  "/Users/rmarni/Desktop/gleb_alex/binary_search.c" "/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/lem_in.dir/binary_search.c.o"
+  "/Users/rmarni/Desktop/gleb_alex/ft_exit.c" "/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/lem_in.dir/ft_exit.c.o"
+  "/Users/rmarni/Desktop/gleb_alex/ft_upload.c" "/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/lem_in.dir/ft_upload.c.o"
+  "/Users/rmarni/Desktop/gleb_alex/lem_alg.c" "/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/lem_in.dir/lem_alg.c.o"
+  "/Users/rmarni/Desktop/gleb_alex/sort_char.c" "/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/lem_in.dir/sort_char.c.o"
+  "/Users/rmarni/Desktop/gleb_alex/tab_comp.c" "/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/lem_in.dir/tab_comp.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

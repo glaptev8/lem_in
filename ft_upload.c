@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 17:00:58 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/17 11:36:59 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/19 14:59:40 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,11 +269,11 @@ int			main(int ac, char **av)
 	lem_in.buf_start = NULL;
 	lem_in.buf_end = NULL;
 
-	if (ac > 1)
-		usage(&lem_in, rooms);
-	else
-	{
-		lem_in.fd = 0;// open(av[1], O_RDONLY);
+//	if (ac > 1)
+//		usage(&lem_in, rooms);
+//	else
+//	{
+		lem_in.fd = open(av[1], O_RDONLY);//0;// open(av[1], O_RDONLY);
 		ft_read_map(&lem_in, rooms);
 		check_bfr_alg(&lem_in, rooms);
 /*
@@ -282,8 +282,11 @@ int			main(int ac, char **av)
 				printf ("room[%d] = \"%s\"; link[%x] = %s\n", j, rooms[j].arr_room, x, rooms[rooms[j].arr_link[x]].arr_room);
 */		ft_printf(GREEN("Ok\n"));
 //		ft_exit(&lem_in, rooms, 0);
-	}
+//}
 //	printf("\n\n%d   %d\n", lem_in.start, lem_in.end);
 	way = set_ways(&lem_in, rooms);
+//	printf ("way[0] %s -> %s -> %s\n", rooms[way[0]->x].arr_room, rooms[way[0]->y].arr_room, rooms[way[0]->next->y].arr_room);
+	ft_lem_alg(&lem_in, way, rooms);
+
 }
 //	printf ("room[7] = \"%s\", room[7].link[0] = %d, room[7].link[1] = %d;\n", rooms[7].arr_room, rooms[7].arr_link[0], rooms[7].arr_link[1]);

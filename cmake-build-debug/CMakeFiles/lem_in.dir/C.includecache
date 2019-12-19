@@ -6,11 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/tmelia/Desktop/lem_in/alg_bfs.c
-header.h
-/Users/tmelia/Desktop/lem_in/header.h
-
-/Users/tmelia/Desktop/lem_in/header.h
+/Users/rmarni/Desktop/gleb_alex/header.h
 stdio.h
 -
 stdarg.h
@@ -23,4 +19,8 @@ stdlib.h
 -
 fcntl.h
 -
+
+/Users/rmarni/Desktop/gleb_alex/lem_alg.c
+header.h
+/Users/rmarni/Desktop/gleb_alex/header.h
 
