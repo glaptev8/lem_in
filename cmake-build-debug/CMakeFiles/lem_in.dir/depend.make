@@ -13,6 +13,9 @@ CMakeFiles/lem_in.dir/ft_exit.c.o: ../header.h
 CMakeFiles/lem_in.dir/ft_upload.c.o: ../ft_upload.c
 CMakeFiles/lem_in.dir/ft_upload.c.o: ../header.h
 
+CMakeFiles/lem_in.dir/lem_alg.c.o: ../header.h
+CMakeFiles/lem_in.dir/lem_alg.c.o: ../lem_alg.c
+
 CMakeFiles/lem_in.dir/sort_char.c.o: ../header.h
 CMakeFiles/lem_in.dir/sort_char.c.o: ../sort_char.c
 

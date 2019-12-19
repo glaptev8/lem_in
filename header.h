@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:12:37 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/17 09:49:05 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/19 13:21:35 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,21 @@
 # define GREY(string)			"\x1b[37m" string "\x1b[0m"
 # define RESET(string)			"\x1b[0m" string "\x1b[0m"
 
-//typedef struct s_way
-//{
-//	int		way[400];
-//	int 	size_way;
-//}				t_way;
+typedef struct s_pr_way
+{
+	int num;
+	int q_elem;
+	int turn;
+} 				t_pr_way;
+
+typedef struct s_ant
+{
+	int		num_ant;
+	int 	turn;
+	int 	way;
+	int 	position;
+	int 	finish;
+}			t_ant;
 
 typedef struct s_room
 {
@@ -97,5 +107,5 @@ void 			ft_bfs_alg(t_str *lem_in, t_room *rooms);
 int 			ft_binary_search(t_room *rooms, int start, int end, char *str);
 void			ft_zero_struck(t_room *rooms, int arr_size);
 int 			**get_ways(t_str *lem, t_room *rooms);
-
+void 			ft_lem_alg(t_str *lem_in, t_way **way, t_room *rooms);
 #endif

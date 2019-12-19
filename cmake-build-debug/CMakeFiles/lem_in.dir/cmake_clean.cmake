@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/lem_in.dir/binary_search.c.o"
   "CMakeFiles/lem_in.dir/ft_exit.c.o"
   "CMakeFiles/lem_in.dir/ft_upload.c.o"
+  "CMakeFiles/lem_in.dir/lem_alg.c.o"
   "CMakeFiles/lem_in.dir/sort_char.c.o"
   "CMakeFiles/lem_in.dir/tab_comp.c.o"
   "lem_in"

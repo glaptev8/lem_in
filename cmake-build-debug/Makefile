@@ -231,6 +231,33 @@ ft_upload.c.s:
 	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/ft_upload.c.s
 .PHONY : ft_upload.c.s
 
+lem_alg.o: lem_alg.c.o
+
+.PHONY : lem_alg.o
+
+# target to build an object file
+lem_alg.c.o:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.o
+.PHONY : lem_alg.c.o
+
+lem_alg.i: lem_alg.c.i
+
+.PHONY : lem_alg.i
+
+# target to preprocess a source file
+lem_alg.c.i:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.i
+.PHONY : lem_alg.c.i
+
+lem_alg.s: lem_alg.c.s
+
+.PHONY : lem_alg.s
+
+# target to generate assembly for a file
+lem_alg.c.s:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.s
+.PHONY : lem_alg.c.s
+
 sort_char.o: sort_char.c.o
 
 .PHONY : sort_char.o
@@ -306,6 +333,9 @@ help:
 	@echo "... ft_upload.o"
 	@echo "... ft_upload.i"
 	@echo "... ft_upload.s"
+	@echo "... lem_alg.o"
+	@echo "... lem_alg.i"
+	@echo "... lem_alg.s"
 	@echo "... sort_char.o"
 	@echo "... sort_char.i"
 	@echo "... sort_char.s"

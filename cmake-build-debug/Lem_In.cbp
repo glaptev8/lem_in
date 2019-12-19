@@ -97,6 +97,9 @@
 		<Unit filename="/Users/tmelia/Desktop/lem_in/header.h">
 			<Option target="lem_in"/>
 		</Unit>
+		<Unit filename="/Users/tmelia/Desktop/lem_in/lem_alg.c">
+			<Option target="lem_in"/>
+		</Unit>
 		<Unit filename="/Users/tmelia/Desktop/lem_in/sort_char.c">
 			<Option target="lem_in"/>
 		</Unit>

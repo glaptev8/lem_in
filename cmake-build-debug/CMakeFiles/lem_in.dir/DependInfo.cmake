@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/tmelia/Desktop/lem_in/binary_search.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/binary_search.c.o"
   "/Users/tmelia/Desktop/lem_in/ft_exit.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/ft_exit.c.o"
   "/Users/tmelia/Desktop/lem_in/ft_upload.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/ft_upload.c.o"
+  "/Users/tmelia/Desktop/lem_in/lem_alg.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/lem_alg.c.o"
   "/Users/tmelia/Desktop/lem_in/sort_char.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/sort_char.c.o"
   "/Users/tmelia/Desktop/lem_in/tab_comp.c" "/Users/tmelia/Desktop/lem_in/cmake-build-debug/CMakeFiles/lem_in.dir/tab_comp.c.o"
   )

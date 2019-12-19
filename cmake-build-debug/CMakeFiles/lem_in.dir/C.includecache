@@ -10,6 +10,18 @@
 header.h
 /Users/tmelia/Desktop/lem_in/header.h
 
+/Users/tmelia/Desktop/lem_in/binary_search.c
+header.h
+/Users/tmelia/Desktop/lem_in/header.h
+
+/Users/tmelia/Desktop/lem_in/ft_exit.c
+header.h
+/Users/tmelia/Desktop/lem_in/header.h
+
+/Users/tmelia/Desktop/lem_in/ft_upload.c
+header.h
+/Users/tmelia/Desktop/lem_in/header.h
+
 /Users/tmelia/Desktop/lem_in/header.h
 stdio.h
 -
@@ -23,4 +35,16 @@ stdlib.h
 -
 fcntl.h
 -
+
+/Users/tmelia/Desktop/lem_in/lem_alg.c
+header.h
+/Users/tmelia/Desktop/lem_in/header.h
+
+/Users/tmelia/Desktop/lem_in/sort_char.c
+header.h
+/Users/tmelia/Desktop/lem_in/header.h
+
+/Users/tmelia/Desktop/lem_in/tab_comp.c
+header.h
+/Users/tmelia/Desktop/lem_in/header.h
 
