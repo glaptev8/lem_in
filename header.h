@@ -96,6 +96,6 @@ t_room 			*ft_sort_link(t_room *room, int arr_size);
 void 			ft_bfs_alg(t_str *lem_in, t_room *rooms);
 int 			ft_binary_search(t_room *rooms, int start, int end, char *str);
 void			ft_zero_struck(t_room *rooms, int arr_size);
-int 			**set_ways(t_str *lem, t_room *rooms);
+int 			**get_ways(t_str *lem, t_room *rooms);
 
 #endif

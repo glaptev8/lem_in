@@ -284,7 +284,7 @@ int			main(int ac, char **av)
 //		ft_exit(&lem_in, rooms, 0);
 	}
 //	printf("\n\n%d   %d\n", lem_in.start, lem_in.end);
-	way = set_ways(&lem_in, rooms);
+	way = get_ways(&lem_in, rooms);
 	int j = 0;
 	for (int j = 0; j < lem_in.room_count; j++)
 		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room, rooms[j].lvl);
