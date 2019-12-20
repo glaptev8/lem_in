@@ -20,6 +20,11 @@
  	i = 0;
  	while (i < place[number_room].size_link_arr)
 	{
+ 		if (place[number_room].arr_link[i] == -1)
+		{
+ 			i++;
+			continue;
+		}
  		if (place[place[number_room].arr_link[i]].visit != visited)
 			return (place[number_room].arr_link[i]);
  		i++;
@@ -46,6 +51,11 @@ int		give_prev_room_min_level_not_visited(t_room *room, int pos, int visit)
 	level = -1;
 	while (i < room[pos].size_link_arr)
 	{
+		if (room[pos].arr_link[i] == -1)
+		{
+			i++;
+			continue;
+		}
 		if (room[room[pos].arr_link[i]].visit < visit)
 		{
 			level = room[room[pos].arr_link[i]].lvl;
@@ -57,6 +67,11 @@ int		give_prev_room_min_level_not_visited(t_room *room, int pos, int visit)
  	i = 0;
  	while (i < room[pos].size_link_arr)
 	{
+		if (room[pos].arr_link[i] == -1)
+		{
+			i++;
+			continue;
+		}
  		if (room[room[pos].arr_link[i]].visit < visit && (level >= room[room[pos].arr_link[i]].lvl))
 		{
  			level = room[room[pos].arr_link[i]].lvl;
@@ -179,82 +194,168 @@ void	set_levels(t_room *rooms, int	visit, t_str *lem)
 	free(tmp);
 }
 
-int 	**set_ways(t_str *lem, t_room *rooms)
+int		get_count_rows(t_room *rooms, int visit, t_str *lem)
+{
+ 	int count;
+ 	int i;
+ 	int q;
+ 	
+ 	q = lem->end;
+ 	count = 0;
+	if (has_ways_from_start(rooms, lem->start, visit) && has_ways_from_start(rooms, lem->end, visit))
+	{
+		while (rooms[q].lvl != 0)
+		{
+			q = give_prev_room_min_level_not_visited(rooms, q, visit);
+			if (q < 0)
+			{
+				if (q == lem->end)
+				{
+					count--;
+					break;
+				}
+				count--;
+				continue;
+			}
+			count++;
+		}
+	}
+	return (count);
+}
+
+int		if_has_road_to_end_from_start(t_room *rooms, t_str *lem, int visit, int **qq)
+{
+ 	int i;
+ 	int end;
+ 	int start;
+ 	int j;
+ 	
+ 	j = 0;
+ 	i = 0;
+ 	end = lem->end;
+ 	start = lem->start;
+	if (give_prev_room_min_level_not_visited(rooms, end, visit) == start)
+	{
+		qq[i] = (int *)malloc(sizeof(int) * 3);
+		qq[i][0] = start;
+		qq[i][1] = end;
+		qq[i][2] = -1;
+		while (rooms[start].arr_link[j] != end)
+			j++;
+		rooms[start].arr_link[j] = -1;
+		j = 0;
+		while (rooms[end].arr_link[j] != start)
+			j++;
+		rooms[end].arr_link[j] = -1;
+		lem->len_ways[i] = 1;
+		i++;
+	}
+	return (i);
+}
+
+int		if_has_way(t_room *rooms, int visit, t_str *lem, int **qq)
+{
+ 	int j;
+	
+	if (has_ways_from_start(rooms, lem->start, visit) && has_ways_from_start(rooms, lem->end, visit))
+	{
+		j = get_count_rows(rooms, visit, lem);
+		*(qq) = (int *)malloc(sizeof(int) * j + 1);
+		(*qq)[j + 1] = -1;
+		(*qq)[j] = lem->end;
+		j--;
+		return (j);
+	}
+	return (-1);
+}
+
+int		one_step_back_is_end(int qq, int end, int *i)
+{
+ 	if (qq == end)
+	{
+		(*i)--;
+		return (1);
+	}
+	return (0);
+}
+
+void		push_row(int **qq, t_room *rooms, t_str *lem, int *i, int *q)
+{
+	int		j;
+
+	if ((j = if_has_way(rooms, 2, lem, &qq[*i])) > -1)
+	{
+		lem->len_ways[*i] = j + 2;
+		while (rooms[*q].lvl != 0)
+		{
+			*q = give_prev_room_min_level_not_visited(rooms, *q, 2);
+			if (q < 0)
+			{
+				rooms[qq[*i][++j]].visit = 2;
+				if (one_step_back_is_end(qq[*i][j], lem->end, i))
+					break;
+				*q = qq[*i][j];
+				continue;
+			}
+			qq[*i][j] = *q;
+			if (qq[*i][j] != lem->end && qq[*i][j] != lem->start)
+				rooms[qq[*i][j]].visit = 2;
+			j--;
+		}
+		*q = lem->end;
+		(*i)++;
+	}
+}
+
+int		**set_ways(t_room *rooms, int visit, t_str *lem)
+{
+ 	int i;
+ 	int q;
+ 	int j;
+ 	int **qq;
+ 	
+ 	i = 0;
+ 	q = lem->end;
+ 	qq = (int **)malloc(sizeof(int *) * rooms[lem->end].size_link_arr);
+ 	if (if_has_road_to_end_from_start(rooms, lem, visit, qq))
+ 		i++;
+	while (i < rooms[lem->end].size_link_arr)
+		push_row(qq, rooms, lem, &i, &q);
+	lem->count_ways = i;
+	return (qq);
+}
+
+int 	**get_ways(t_str *lem, t_room *rooms)
 {
 	int		start;
-	int		end;
-	int		i;
 	int		q;
-	int		lvl;
 	int		visit;
-	int		qq[7][12];
+	int		**qq;
+	int		j;
+	
 	visit = 1;
-
-	q = -1;
-	lvl = 1;
 	start = lem->start;
-	end = lem->end;
-	i = start;
 	rooms[start].lvl = 0;
 	rooms[start].visit = 1;
-	set_levels(rooms, visit, lem);
-//	i = 0;
-//	q = end;
-//	visit++;
-//	rooms[q].visit = visit;
-//	while (i < rooms[end].size_link_arr)
-//	{
-//		if (has_ways_from_start(rooms, start, visit) && has_ways_from_start(rooms, end, visit))
-//		{
-//			int j = rooms[give_prev_room_min_level_not_visited(rooms, q, visit)].lvl + 1;
-//			qq[i][j + 1] = -1;
-//			qq[i][j] = end;
-//			lem->len_ways[i] = j;
-//			j--;
-//			while (rooms[q].lvl != 0)
-//			{
-//				q = give_prev_room_min_level_not_visited(rooms, q, visit);
-//				if (q < 0)
-//				{
-//					rooms[qq[i][j + 1]].visit = visit;
-//					j++;
-//					if (qq[i][j] == end)
-//					{
-//						i--;
-//						break;
-//					}
-//					q = qq[i][j];
-//					continue;
-//				}
-//				qq[i][j] = q;
-//				if (qq[i][j] != end && qq[i][j] != start)
-//					rooms[qq[i][j]].visit = 2;
-//				j--;
-//			}
-//			q = end;
-//			i++;
-//		}
-//		else
-//			break;
-//	}
-//	q = 0;
-//	int j = 0;
-//	lem->count_ways = i;
-//	printf("\nвсего путей --  %d\n", lem->count_ways);
-//	while (q < i)
-//	{
-//		if (qq[q])
-//		{
-//			printf("\nдлина пути -- %d\n", lem->len_ways[q]);
-//			j = 0;
-//			while (qq[q][j] != -1)
-//			{
-//				printf("%s  %s", rooms[qq[q][j]].arr_room, qq[q][j + 1] != -1 ?  " ->  " : "");
-//				j++;
-//			}
-//			printf("\n\n");
-//		}
-//		q++;
-//	}
+	set_levels(rooms, visit++, lem);
+	rooms[lem->end].visit = visit;
+	qq = set_ways(rooms, visit, lem);
+	q = 0;
+	printf("\nвсего путей --  %d\n", lem->count_ways);
+	while (q < lem->count_ways)
+	{
+		if (qq[q])
+		{
+			printf("\nдлина пути -- %d\n", lem->len_ways[q]);
+			j = 0;
+			while (qq[q][j] != -1)
+			{
+				printf("%s  %s", rooms[qq[q][j]].arr_room, qq[q][j + 1] != -1 ?  " ->  " : "");
+				j++;
+			}
+			printf("\n\n");
+		}
+		q++;
+	}
 	return (qq);
 }
