@@ -45,7 +45,7 @@ int		give_prev_room_min_level_not_visited(t_room *room, int pos, int visit)
  	int		j;
  	int		min;
 	int		level;
-	
+
 	i = 0;
 	min = visit;
 	level = -1;
@@ -86,7 +86,7 @@ int		give_prev_room_min_level_not_visited(t_room *room, int pos, int visit)
  void	clear_stack(t_stack **stack)
  {
 	 t_stack *tmp;
-	
+
 	 tmp = *stack;
 	 while (tmp && (tmp)->next)
 	 {
@@ -95,14 +95,14 @@ int		give_prev_room_min_level_not_visited(t_room *room, int pos, int visit)
 		 *stack = NULL;
 		 *stack = tmp;
 	 }
-	 free(*stack);
-	 *stack = NULL;
+	 if (*stack)
+	 	free(*stack);
  }
 
 t_stack 	*lst_create(t_stack *stack, int number)
 {
  	t_stack *tmp;
- 	
+
  	tmp = (t_stack *)malloc(sizeof(t_stack));
  	tmp->x = number;
  	tmp->head = tmp;
@@ -126,17 +126,31 @@ t_stack *copy_stack(t_stack *stack)
  	t_stack *tmp;
  	t_stack *q;
  	t_stack *a;
- 	
+
  	a = stack;
  	tmp = NULL;
+ 	if (a)
+	{
+		tmp = (t_stack *)malloc(sizeof(t_stack));
+		tmp->next = NULL;
+		tmp->head = tmp;
+	}
  	while (a && a->next)
 	{
- 		tmp = lst_create(tmp, a->x);
+ 		tmp->x = a->x;
+ 		tmp->next = (t_stack *)malloc(sizeof(t_stack));
+ 		tmp->head = tmp->head;
+ 		tmp->next->head = tmp->head;
+ 		tmp = tmp->next;
+ 		tmp->next = NULL;
  		a = a->next;
 	}
  	if (a)
-		tmp = lst_create(tmp, a->x);
- 	return (tmp);
+	{
+		tmp->x = a->x;
+		return (tmp->head);
+	}
+ 	return (NULL);
 }
 
 void	set_levels(t_room *rooms, int	visit, t_str *lem)
@@ -148,12 +162,10 @@ void	set_levels(t_room *rooms, int	visit, t_str *lem)
 
  	int i = 1;
  	stack = NULL;
- 	tmp = NULL;
  	stack = lst_create(stack, lem->start);
 	tmp = copy_stack(stack);
-	clear_stack(&stack);
-//	stack = NULL;
-// 	rooms[lem->start].lvl = 0;
+	clear_stack(&(stack)->head);
+	stack = NULL;
  	lvl = 1;
 	while (tmp)
 	{
@@ -164,34 +176,23 @@ void	set_levels(t_room *rooms, int	visit, t_str *lem)
 			stack = lst_create(stack, q);
 		}
 		if (tmp->next)
-		{
 			tmp = tmp->next;
-			if (!tmp)
-			{
-				free(stack);
-				free(tmp);
-				break;
-			}
-		}
 		else
 		{
-			if (tmp->head)
-				clear_stack(&tmp->head);
-			else
-				clear_stack(&tmp);
-			tmp = copy_stack(stack);
-			clear_stack(&stack);
 			lvl++;
-			if (!tmp)
+			if ((q = give_next_room(rooms, tmp->x, visit)) >= 0)
 			{
-				free(stack);
-				free(tmp);
-				break;
+				rooms[q].visit = visit;
+				rooms[q].lvl = lvl;
+				stack = lst_create(stack, q);
 			}
+			clear_stack(&(tmp)->head);
+			tmp = copy_stack(stack);
+			if (stack)
+				clear_stack(&(stack)->head);
+			stack = NULL;
 		}
 	}
-	free(stack);
-	free(tmp);
 }
 
 int		get_count_rows(t_room *rooms, int visit, t_str *lem)
@@ -199,7 +200,7 @@ int		get_count_rows(t_room *rooms, int visit, t_str *lem)
  	int count;
  	int i;
  	int q;
- 	
+
  	q = lem->end;
  	count = 0;
 	if (has_ways_from_start(rooms, lem->start, visit) && has_ways_from_start(rooms, lem->end, visit))
@@ -229,7 +230,7 @@ int		if_has_road_to_end_from_start(t_room *rooms, t_str *lem, int visit, int **q
  	int end;
  	int start;
  	int j;
- 	
+
  	j = 0;
  	i = 0;
  	end = lem->end;
@@ -253,16 +254,16 @@ int		if_has_road_to_end_from_start(t_room *rooms, t_str *lem, int visit, int **q
 	return (i);
 }
 
-int		if_has_way(t_room *rooms, int visit, t_str *lem, int **qq)
+int		if_has_way(t_room *rooms, int visit, t_str *lem, int **qq, int i)
 {
  	int j;
-	
+
 	if (has_ways_from_start(rooms, lem->start, visit) && has_ways_from_start(rooms, lem->end, visit))
 	{
 		j = get_count_rows(rooms, visit, lem);
-		*(qq) = (int *)malloc(sizeof(int) * j + 1);
-		(*qq)[j + 1] = -1;
-		(*qq)[j] = lem->end;
+		qq[i] = (int *)malloc(sizeof(int) * (j + 2));
+		qq[i][j + 1] = -1;
+		qq[i][j] = lem->end;
 		j--;
 		return (j);
 	}
@@ -282,8 +283,8 @@ int		one_step_back_is_end(int qq, int end, int *i)
 void		push_row(int **qq, t_room *rooms, t_str *lem, int *i, int *q)
 {
 	int		j;
-
-	if ((j = if_has_way(rooms, 2, lem, &qq[*i])) > -1)
+//
+	if ((j = if_has_way(rooms, 2, lem, qq, *i)) > -1)
 	{
 		lem->len_ways[*i] = j + 2;
 		while (rooms[*q].lvl != 0)
@@ -311,16 +312,19 @@ int		**set_ways(t_room *rooms, int visit, t_str *lem)
 {
  	int i;
  	int q;
- 	int j;
+// 	int j;
  	int **qq;
- 	
+//
  	i = 0;
  	q = lem->end;
- 	qq = (int **)malloc(sizeof(int *) * rooms[lem->end].size_link_arr);
+ 	qq = (int **)malloc(sizeof(int *) * (rooms[lem->end].size_link_arr + 2));
  	if (if_has_road_to_end_from_start(rooms, lem, visit, qq))
  		i++;
 	while (i < rooms[lem->end].size_link_arr)
+	{
 		push_row(qq, rooms, lem, &i, &q);
+//		i++;
+	}
 	lem->count_ways = i;
 	return (qq);
 }
@@ -332,7 +336,7 @@ int 	**get_ways(t_str *lem, t_room *rooms)
 	int		visit;
 	int		**qq;
 	int		j;
-	
+
 	visit = 1;
 	start = lem->start;
 	rooms[start].lvl = 0;

@@ -288,6 +288,5 @@ int			main(int ac, char **av)
 	int j = 0;
 	for (int j = 0; j < lem_in.room_count; j++)
 		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room, rooms[j].lvl);
-	ft_exit(&lem_in, rooms, 0);
 }
 //	printf ("room[7] = \"%s\", room[7].link[0] = %d, room[7].link[1] = %d;\n", rooms[7].arr_room, rooms[7].arr_link[0], rooms[7].arr_link[1]);
