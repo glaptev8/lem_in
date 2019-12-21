@@ -317,15 +317,21 @@ int		**set_ways(t_room *rooms, int visit, t_str *lem)
 //
  	i = 0;
  	q = lem->end;
- 	qq = (int **)malloc(sizeof(int *) * (rooms[lem->end].size_link_arr + 2));
- 	if (if_has_road_to_end_from_start(rooms, lem, visit, qq))
- 		i++;
-	while (i < rooms[lem->end].size_link_arr)
+	qq = (int **)malloc(sizeof(int *) * (rooms[lem->end].size_link_arr + 2));
+	if (if_has_way(rooms, visit, lem, qq, lem->end) > -1)
 	{
-		push_row(qq, rooms, lem, &i, &q);
-//		i++;
+		if (if_has_road_to_end_from_start(rooms, lem, visit, qq))
+			i++;
+		while (i < rooms[lem->end].size_link_arr)
+			push_row(qq, rooms, lem, &i, &q);
+		lem->count_ways = i;
 	}
-	lem->count_ways = i;
+ 	else
+	{
+ 		free(qq[lem->end]);
+		free(qq);
+		lem->count_ways = i;
+	}
 	return (qq);
 }
 
