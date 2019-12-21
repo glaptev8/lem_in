@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:12:37 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/19 13:21:35 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/21 16:08:53 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define CYAN(string)			"\x1b[36m" string "\x1b[0m"
 # define GREY(string)			"\x1b[37m" string "\x1b[0m"
 # define RESET(string)			"\x1b[0m" string "\x1b[0m"
+# define NUM_RM	4001
+# define NUM_LINK 40
 
 typedef struct s_pr_way
 {
@@ -50,7 +52,7 @@ typedef struct s_room
 	int		lvl;
 	int		visit;
 	char	*arr_room;
-	int		arr_link[40];
+	int		arr_link[NUM_LINK];
 	int 	size_link_arr;
 }	t_room;
 
@@ -63,7 +65,7 @@ typedef struct s_str
 	int 	start;
 	int 	end;
 	int		count_ways;
-	int		len_ways[100];
+	int		len_ways[NUM_LINK];
 	int 	link_count;
 	char	*buf;
 	int 	fd;
@@ -107,5 +109,5 @@ void 			ft_bfs_alg(t_str *lem_in, t_room *rooms);
 int 			ft_binary_search(t_room *rooms, int start, int end, char *str);
 void			ft_zero_struck(t_room *rooms, int arr_size);
 int 			**get_ways(t_str *lem, t_room *rooms);
-void 			ft_lem_alg(t_str *lem_in, t_way **way, t_room *rooms);
+void 			ft_lem_alg(t_str *lem_in, int **way, t_room *rooms);
 #endif
