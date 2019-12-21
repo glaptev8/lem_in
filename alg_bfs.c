@@ -280,7 +280,7 @@ int		one_step_back_is_end(int qq, int end, int *i)
 	return (0);
 }
 
-void		push_row(int **qq, t_room *rooms, t_str *lem, int *i, int *q)
+int		push_row(int **qq, t_room *rooms, t_str *lem, int *i, int *q)
 {
 	int		j;
 //
@@ -305,6 +305,12 @@ void		push_row(int **qq, t_room *rooms, t_str *lem, int *i, int *q)
 		}
 		*q = lem->end;
 		(*i)++;
+		return (1);
+	}
+	else
+	{
+		lem->count_ways = (*i);
+		return (0);
 	}
 }
 
@@ -322,9 +328,7 @@ int		**set_ways(t_room *rooms, int visit, t_str *lem)
 	{
 		if (if_has_road_to_end_from_start(rooms, lem, visit, qq))
 			i++;
-		while (i < rooms[lem->end].size_link_arr)
-			push_row(qq, rooms, lem, &i, &q);
-		lem->count_ways = i;
+		while (push_row(qq, rooms, lem, &i, &q));
 	}
  	else
 	{

@@ -285,8 +285,8 @@ int			main(int ac, char **av)
 	}
 //	printf("\n\n%d   %d\n", lem_in.start, lem_in.end);
 	way = get_ways(&lem_in, rooms);
-	int j = 0;
-	for (int j = 0; j < lem_in.room_count; j++)
-		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room, rooms[j].lvl);
+//	int j = 0;
+//	for (int j = 0; j < lem_in.room_count; j++)
+//		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room, rooms[j].lvl);
 }
 //	printf ("room[7] = \"%s\", room[7].link[0] = %d, room[7].link[1] = %d;\n", rooms[7].arr_room, rooms[7].arr_link[0], rooms[7].arr_link[1]);
