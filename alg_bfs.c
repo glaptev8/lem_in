@@ -261,9 +261,12 @@ int		if_has_way(t_room *rooms, int visit, t_str *lem, int **qq, int i)
 	if (has_ways_from_start(rooms, lem->start, visit) && has_ways_from_start(rooms, lem->end, visit))
 	{
 		j = get_count_rows(rooms, visit, lem);
-		qq[i] = (int *)malloc(sizeof(int) * (j + 2));
-		qq[i][j + 1] = -1;
-		qq[i][j] = lem->end;
+		if (!qq[i])
+		{
+			qq[i] = (int *)malloc(sizeof(int) * (j + 2));
+			qq[i][j + 1] = -1;
+			qq[i][j] = lem->end;
+		}
 		j--;
 		return (j);
 	}
@@ -286,7 +289,7 @@ int		push_row(int **qq, t_room *rooms, t_str *lem, int *i, int *q)
 //
 	if ((j = if_has_way(rooms, 2, lem, qq, *i)) > -1)
 	{
-		lem->len_ways[*i] = j + 2;
+		lem->len_ways[*i] = j + 1;
 		while (rooms[*q].lvl != 0)
 		{
 			*q = give_prev_room_min_level_not_visited(rooms, *q, 2);
@@ -322,10 +325,15 @@ int		**set_ways(t_room *rooms, int visit, t_str *lem)
  	int **qq;
 //
  	i = 0;
- 	q = lem->end;
-	qq = (int **)malloc(sizeof(int *) * (rooms[lem->end].size_link_arr + 2));
+ 	q = 0;
+	qq = (int **)malloc(sizeof(int *) * (rooms[lem->end].size_link_arr));
+	while (q < rooms[lem->end].size_link_arr)
+		qq[q++] = NULL;
+	q = lem->end;
 	if (if_has_way(rooms, visit, lem, qq, lem->end) > -1)
 	{
+		free(qq[0]);
+		qq[0] = NULL;
 		if (if_has_road_to_end_from_start(rooms, lem, visit, qq))
 			i++;
 		while (push_row(qq, rooms, lem, &i, &q));
@@ -334,6 +342,7 @@ int		**set_ways(t_room *rooms, int visit, t_str *lem)
 	{
  		free(qq[lem->end]);
 		free(qq);
+		qq = NULL;
 		lem->count_ways = i;
 	}
 	return (qq);
@@ -355,21 +364,31 @@ int 	**get_ways(t_str *lem, t_room *rooms)
 	rooms[lem->end].visit = visit;
 	qq = set_ways(rooms, visit, lem);
 	q = 0;
-	printf("\nвсего путей --  %d\n", lem->count_ways);
-	while (q < lem->count_ways)
+	if (qq)
 	{
-		if (qq[q])
+		while(q < lem->count_ways)
 		{
-			printf("\nдлина пути -- %d\n", lem->len_ways[q]);
-			j = 0;
-			while (qq[q][j] != -1)
-			{
-				printf("%s  %s", rooms[qq[q][j]].arr_room, qq[q][j + 1] != -1 ?  " ->  " : "");
-				j++;
-			}
-			printf("\n\n");
+			free(qq[q]);
+			q++;
 		}
-		q++;
+		free(qq);
+		qq = NULL;
 	}
+//	printf("\nвсего путей --  %d\n", lem->count_ways);
+//	while (q < lem->count_ways)
+//	{
+//		if (qq[q])
+//		{
+//			printf("\nдлина пути -- %d\n", lem->len_ways[q]);
+//			j = 0;
+//			while (qq[q][j] != -1)
+//			{
+//				printf("%s  %s", rooms[qq[q][j]].arr_room, qq[q][j + 1] != -1 ?  " ->  " : "");
+//				j++;
+//			}
+//			printf("\n\n");
+//		}
+//		q++;
+//	}
 	return (qq);
 }

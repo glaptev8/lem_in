@@ -286,6 +286,13 @@ int			main(int ac, char **av)
 //	printf("\n\n%d   %d\n", lem_in.start, lem_in.end);
 	way = get_ways(&lem_in, rooms);
 //	int j = 0;
+//	while (way[j])
+//	{
+//		free(way[j]);
+//		j++;
+//	}
+//	free(way);
+	ft_exit(&lem_in, rooms, 0);
 //	for (int j = 0; j < lem_in.room_count; j++)
 //		printf ("room[%d] = \"%s\"; lvl = %d\n", j, rooms[j].arr_room, rooms[j].lvl);
 }
