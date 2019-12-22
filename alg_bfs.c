@@ -263,7 +263,7 @@ int		if_has_way(t_room *rooms, int visit, t_str *lem, int **qq, int i)
 		j = get_count_rows(rooms, visit, lem);
 		if (!qq[i])
 		{
-			qq[i] = (int *)malloc(sizeof(int) * (j + 2));
+			qq[i] = (int *)malloc(sizeof(int) * (j + 1));
 			qq[i][j + 1] = -1;
 			qq[i][j] = lem->end;
 		}
@@ -327,16 +327,14 @@ int		**set_ways(t_room *rooms, int visit, t_str *lem)
  	i = 0;
  	q = 0;
 	qq = (int **)malloc(sizeof(int *) * (rooms[lem->end].size_link_arr));
-	while (q < rooms[lem->end].size_link_arr)
+	while (q <= rooms[lem->end].size_link_arr)
 		qq[q++] = NULL;
 	q = lem->end;
 	if (if_has_way(rooms, visit, lem, qq, lem->end) > -1)
 	{
-		free(qq[0]);
-		qq[0] = NULL;
 		if (if_has_road_to_end_from_start(rooms, lem, visit, qq))
 			i++;
-		while (push_row(qq, rooms, lem, &i, &q));
+		if (push_row(qq, rooms, lem, &i, &q));
 	}
  	else
 	{
@@ -374,6 +372,7 @@ int 	**get_ways(t_str *lem, t_room *rooms)
 		free(qq);
 		qq = NULL;
 	}
+	q = 0;
 //	printf("\nвсего путей --  %d\n", lem->count_ways);
 //	while (q < lem->count_ways)
 //	{
