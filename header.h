@@ -67,6 +67,7 @@ typedef struct s_str
 	int 	link_count;
 	char	*buf;
 	int 	fd;
+	int		copy_end_link_count;
 }	t_str;
 
 typedef struct 	s_stack

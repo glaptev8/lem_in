@@ -12,4 +12,5 @@ add_executable(lem_in
 		alg_bfs.c
 		header.h
 		lem_alg.c)
+
 target_link_libraries(lem_in LINK_PUBLIC ${CMAKE_SOURCE_DIR}/libft.a)
