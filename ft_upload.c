@@ -264,11 +264,10 @@ int			main(int ac, char **av)
 	t_str	lem_in;
 	t_room	rooms[5000];
 	int	**way;
+
 	lem_in.room_count = 0;
 	lem_in.link_count = 0;
 	lem_in.buf_start = NULL;
-	lem_in.buf_end = NULL;
-	
 	for (int x = 0; x < 5000; x++)
 	{
 		rooms[x].visit = 0;
@@ -293,6 +292,7 @@ int			main(int ac, char **av)
 //	printf ("room[0].arr_room = \"%s\", room[0].arr_room = %s, room[7].link[1] = %d;\n", rooms[0].arr_room, rooms[797].arr_room, rooms[7].arr_link[1]);
 	
 	way = get_ways(&lem_in, rooms);
+	printf("\n%d\n",rooms[0].lvl);
 //	int j = 0;
 //	while (way[j])
 //	{
