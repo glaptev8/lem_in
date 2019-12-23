@@ -48,10 +48,17 @@ RM = /Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /Users/rmarni/Desktop/alex_lem
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/rmarni/Desktop/alex_lem/cmake-build-debug
+=======
+CMAKE_SOURCE_DIR = /Users/rmarni/Desktop/gleb_alex
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /Users/rmarni/Desktop/gleb_alex/cmake-build-debug
+>>>>>>> origin/alex
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +87,15 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles 0
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles /Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/progress.marks
+	$(MAKE) -f CMakeFiles/Makefile2 all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles 0
+>>>>>>> origin/alex
 .PHONY : all
 
 # The main clean target
@@ -237,7 +250,11 @@ lem_alg.o: lem_alg.c.o
 
 # target to build an object file
 lem_alg.c.o:
+<<<<<<< HEAD
 	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/lem_alg.c.o
+=======
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.o
+>>>>>>> origin/alex
 .PHONY : lem_alg.c.o
 
 lem_alg.i: lem_alg.c.i
@@ -246,7 +263,11 @@ lem_alg.i: lem_alg.c.i
 
 # target to preprocess a source file
 lem_alg.c.i:
+<<<<<<< HEAD
 	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/lem_alg.c.i
+=======
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.i
+>>>>>>> origin/alex
 .PHONY : lem_alg.c.i
 
 lem_alg.s: lem_alg.c.s
@@ -255,7 +276,11 @@ lem_alg.s: lem_alg.c.s
 
 # target to generate assembly for a file
 lem_alg.c.s:
+<<<<<<< HEAD
 	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/lem_alg.c.s
+=======
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.s
+>>>>>>> origin/alex
 .PHONY : lem_alg.c.s
 
 sort_char.o: sort_char.c.o

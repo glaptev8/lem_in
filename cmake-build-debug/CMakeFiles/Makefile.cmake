@@ -8,6 +8,10 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/CMakeCInformation.cmake"
+<<<<<<< HEAD
+=======
+  "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/CMakeCXXInformation.cmake"
+>>>>>>> origin/alex
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/CMakeCommonLanguageInclude.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
@@ -18,12 +22,22 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/CMakeSystemSpecificInformation.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/CMakeSystemSpecificInitialize.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Compiler/AppleClang-C.cmake"
+<<<<<<< HEAD
+=======
+  "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Compiler/AppleClang-CXX.cmake"
+>>>>>>> origin/alex
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Compiler/Clang.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Compiler/GNU.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Internal/CMakeCheckCompilerFlag.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Platform/Apple-AppleClang-C.cmake"
+<<<<<<< HEAD
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Platform/Apple-Clang-C.cmake"
+=======
+  "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Platform/Apple-AppleClang-CXX.cmake"
+  "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Platform/Apple-Clang-C.cmake"
+  "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Platform/Apple-Clang-CXX.cmake"
+>>>>>>> origin/alex
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Platform/Apple-Clang.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Platform/Darwin-Initialize.cmake"
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/Platform/Darwin.cmake"
@@ -31,6 +45,10 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/share/cmake-3.14/Modules/ProcessorCount.cmake"
   "../CMakeLists.txt"
   "CMakeFiles/3.14.5/CMakeCCompiler.cmake"
+<<<<<<< HEAD
+=======
+  "CMakeFiles/3.14.5/CMakeCXXCompiler.cmake"
+>>>>>>> origin/alex
   "CMakeFiles/3.14.5/CMakeSystem.cmake"
   )
 

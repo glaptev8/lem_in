@@ -6,29 +6,18 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 12:23:33 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/21 16:04:25 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/23 12:12:28 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void 	tmp_initial_way(t_str *lem_in)
+void			ft_ant_initial(t_ant *ants, t_str *lem_in, t_pr_way *pr_way)
 {
-	lem_in->count_ways = 1;
-	
-}
+	int			i;
 
-void	ft_print_lem_in(t_room *rooms, int num_ant, int num_room)
-{
-	ft_printf("L%d-%s\n", num_ant, rooms[num_room].arr_room);
-}
-
-void	ft_ant_initial(t_ant *ants, t_str *lem_in, t_pr_way *pr_way)
-{
-	int i;
-	
 	i = -1;
-	while(++i < lem_in->q_lem)
+	while (++i < lem_in->q_lem)
 	{
 		ants[i].num_ant = i + 1;
 		ants[i].position = 1;
@@ -45,32 +34,30 @@ void	ft_ant_initial(t_ant *ants, t_str *lem_in, t_pr_way *pr_way)
 	}
 }
 
-void	ft_short_way(t_pr_way *way, int q_way, t_ant *ants, int current_ant)
+void			ft_short_way(t_pr_way *way, int q_way, t_ant *ants, int c_ant)
 {
-	int i;
+	int			i;
+	int			max_num;
+	int			i_min;
+
 	i = -1;
-	int max_num = 9999;
-	int i_min;
-	
-	
+	max_num = 99999999;
 	while (++i < q_way)
 	{
-//		printf ("way[%d].q_elem = %d, way[%d].turn = %d\n", i, way[i].q_elem, i, way[i].turn);
-		if(way[i].q_elem + way[i].turn < max_num)
+		if (way[i].q_elem + way[i].turn < max_num)
 		{
 			max_num = way[i].q_elem + way[i].turn;
 			i_min = i;
 		}
 	}
-	ants[current_ant].turn = way[i_min].turn;
-	ants[current_ant].way = i_min;
+	ants[c_ant].turn = way[i_min].turn;
+	ants[c_ant].way = i_min;
 	way[i_min].turn++;
-//	printf ("HEARE\n");
 }
 
-int 	ft_check_finish(int q_ants, t_ant *ants)
+int				ft_check_finish(int q_ants, t_ant *ants)
 {
-	int i;
+	int			i;
 
 	i = -1;
 	while (++i < q_ants)
@@ -79,11 +66,11 @@ int 	ft_check_finish(int q_ants, t_ant *ants)
 	return (1);
 }
 
-void	step(t_str *lem_in, t_ant *ants)
+void			step(t_str *lem_in, t_ant *ants)
 {
-	int i;
-	i = 0;
+	int			i;
 
+	i = 0;
 	while (i < lem_in->q_lem)
 	{
 		ants[i].turn--;
@@ -96,50 +83,32 @@ void	step(t_str *lem_in, t_ant *ants)
 			ants[i].position++;
 		i++;
 	}
-
-
 	ft_printf("\n");
 }
 
-void 	ft_lem_alg(t_str *lem_in, int **way, t_room *rooms)
+void			ft_lem_alg(t_str *lem_in, int **way, t_room *rooms)
 {
-	printf("LEM_ALG\n");
-	t_ant ants[lem_in->q_lem];
-	t_pr_way pr_way[lem_in->count_ways];
+	t_ant		ants[lem_in->q_lem];
+	t_pr_way	pr_way[lem_in->count_ways];
+	int			i;
+
 	ft_ant_initial(ants, lem_in, pr_way);
-	
-	int i;
-	i = 0;
-
-
-	while (i < lem_in->q_lem)
-	{
+	i = -1;
+	while (++i < lem_in->q_lem)
 		ft_short_way(pr_way, lem_in->count_ways, ants, i);
-		i++;
-	}
-//	i = -1;
-//	for (int x = 0; x < lem_in->q_lem; x++)
-//			printf ("ant[%d] %d, turn = %d, finish = %d;\n",i + 1,  ants[x].way, ants[x].turn, ants[x].finish);
-
 	i = 0;
-
 	while (!ft_check_finish(lem_in->q_lem, ants))
 	{
-
 		while (i < lem_in->q_lem)
 		{
 			if (ants[i].turn <= 0 && !ants[i].finish)
-				ft_printf("L%d-%s ", ants[i].num_ant, rooms[way[ants[i].way][ants[i].position]].arr_room);
-//			printf ("\nway[ants[i] = %d,  lem_in->end = %d, i= %d\n", way[ants[i].way][ants[i].position], lem_in->end, i);
-			if (way[ants[i].way][ants[i].position] == lem_in->end && ants[i].turn <= 0)
+				ft_printf("L%d-%s ", ants[i].num_ant,
+				rooms[way[ants[i].way][ants[i].position]].arr_room);
+			if (way[ants[i].way][ants[i].position] == lem_in->end
+			&& ants[i].turn <= 0)
 				ants[i].finish = 1;
 			i++;
-
 		}
-//		for (int x = 0; x < lem_in->q_lem; x++)
-//			printf ("ant[%d] %d, turn = %d, finish = %d;\n",x + 1,  ants[x].way, ants[x].turn, ants[x].finish);
-//		exit (0);
-
 		i = 0;
 		step(lem_in, ants);
 	}

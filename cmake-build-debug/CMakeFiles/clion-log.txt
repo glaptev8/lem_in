@@ -1,4 +1,15 @@
 /Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /Users/rmarni/Desktop/alex_lem
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/rmarni/Desktop/alex_lem/cmake-build-debug
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 2. Offending entry: <<<<<<< HEAD
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 6. Offending entry: >>>>>>> origin/alex
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 205. Offending entry: <<<<<<< HEAD
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 215. Offending entry: >>>>>>> origin/alex
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 225. Offending entry: <<<<<<< HEAD
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 229. Offending entry: >>>>>>> origin/alex
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 244. Offending entry: <<<<<<< HEAD
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 258. Offending entry: >>>>>>> origin/alex
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 299. Offending entry: <<<<<<< HEAD
+CMake Error: Parse error in cache file /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt on line 303. Offending entry: >>>>>>> origin/alex
+CMake Error: The current CMakeCache.txt directory /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeCache.txt is different than the directory /Users/rmarni/Desktop/gleb_alex/cmake-build-debug where CMakeCache.txt was created. This may result in binaries being created in the wrong place. If you are not sure, reedit the CMakeCache.txt
+CMake Error: The source "/Users/rmarni/Desktop/alex_lem/CMakeLists.txt" does not match the source "/Users/rmarni/Desktop/gleb_alex/CMakeLists.txt" used to generate cache.  Re-run cmake with a different source directory.
+Unable to determine product file path for target lem_in. Running and debugging will be unavailable.
+Cannot read /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles/3.14.5/CMakeCXXCompiler.cmake

@@ -59,6 +59,7 @@ RM = /Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /Users/rmarni/Desktop/alex_lem
 
 # The top-level build directory on which CMake was run.
@@ -73,18 +74,46 @@ CMakeFiles/alex_lem.dir/all:
 	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target alex_lem"
 .PHONY : CMakeFiles/alex_lem.dir/all
+=======
+CMAKE_SOURCE_DIR = /Users/rmarni/Desktop/gleb_alex
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /Users/rmarni/Desktop/gleb_alex/cmake-build-debug
+>>>>>>> origin/alex
 
 # Include target in all.
 all: CMakeFiles/alex_lem.dir/all
 
+<<<<<<< HEAD
+.PHONY : all
+=======
+# All Build rule for target.
+CMakeFiles/lem_in.dir/all:
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/depend
+	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target lem_in"
+.PHONY : CMakeFiles/lem_in.dir/all
+>>>>>>> origin/alex
+
+# Include target in all.
+all: CMakeFiles/lem_in.dir/all
+
 .PHONY : all
 
 # Build rule for subdir invocation for target.
+<<<<<<< HEAD
 CMakeFiles/alex_lem.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles 8
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/alex_lem.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/alex_lem.dir/rule
+=======
+CMakeFiles/lem_in.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles 8
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/lem_in.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/lem_in.dir/rule
+>>>>>>> origin/alex
 
 # Convenience name for target.
 alex_lem: CMakeFiles/alex_lem.dir/rule
@@ -98,6 +127,11 @@ CMakeFiles/alex_lem.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/alex_lem.dir/clean
+
+.PHONY : clean
+
+# clean rule for target.
+clean: CMakeFiles/lem_in.dir/clean
 
 .PHONY : clean
 
