@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-/Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles/alex_lem.dir
-=======
-/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/lem_in.dir
->>>>>>> origin/alex
+/Users/rmarni/Desktop/TMP_LEM_IN/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/rmarni/Desktop/TMP_LEM_IN/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/rmarni/Desktop/TMP_LEM_IN/cmake-build-debug/CMakeFiles/TMP_LEM_IN.dir

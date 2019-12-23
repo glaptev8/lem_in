@@ -1,0 +1,8 @@
+alg_bfs.c
+binary_search.c
+check_bfr_alg.c
+ft_exit.c
+ft_upload.c
+lem_alg.c
+main.c
+sort_char.c

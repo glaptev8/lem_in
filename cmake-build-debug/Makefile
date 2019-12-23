@@ -48,17 +48,10 @@ RM = /Users/rmarni/Desktop/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< HEAD
-CMAKE_SOURCE_DIR = /Users/rmarni/Desktop/alex_lem
+CMAKE_SOURCE_DIR = /Users/rmarni/Desktop/TMP_LEM_IN
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/rmarni/Desktop/alex_lem/cmake-build-debug
-=======
-CMAKE_SOURCE_DIR = /Users/rmarni/Desktop/gleb_alex
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/rmarni/Desktop/gleb_alex/cmake-build-debug
->>>>>>> origin/alex
+CMAKE_BINARY_DIR = /Users/rmarni/Desktop/TMP_LEM_IN/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,15 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-<<<<<<< HEAD
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/TMP_LEM_IN/cmake-build-debug/CMakeFiles /Users/rmarni/Desktop/TMP_LEM_IN/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/alex_lem/cmake-build-debug/CMakeFiles 0
-=======
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles /Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles/progress.marks
-	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/gleb_alex/cmake-build-debug/CMakeFiles 0
->>>>>>> origin/alex
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/rmarni/Desktop/TMP_LEM_IN/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -124,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named alex_lem
+# Target rules for targets named TMP_LEM_IN
 
 # Build rule for target.
-alex_lem: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 alex_lem
-.PHONY : alex_lem
+TMP_LEM_IN: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 TMP_LEM_IN
+.PHONY : TMP_LEM_IN
 
 # fast build rule for target.
-alex_lem/fast:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/build
-.PHONY : alex_lem/fast
+TMP_LEM_IN/fast:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/build
+.PHONY : TMP_LEM_IN/fast
 
 alg_bfs.o: alg_bfs.c.o
 
@@ -142,7 +129,7 @@ alg_bfs.o: alg_bfs.c.o
 
 # target to build an object file
 alg_bfs.c.o:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/alg_bfs.c.o
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/alg_bfs.c.o
 .PHONY : alg_bfs.c.o
 
 alg_bfs.i: alg_bfs.c.i
@@ -151,7 +138,7 @@ alg_bfs.i: alg_bfs.c.i
 
 # target to preprocess a source file
 alg_bfs.c.i:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/alg_bfs.c.i
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/alg_bfs.c.i
 .PHONY : alg_bfs.c.i
 
 alg_bfs.s: alg_bfs.c.s
@@ -160,7 +147,7 @@ alg_bfs.s: alg_bfs.c.s
 
 # target to generate assembly for a file
 alg_bfs.c.s:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/alg_bfs.c.s
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/alg_bfs.c.s
 .PHONY : alg_bfs.c.s
 
 binary_search.o: binary_search.c.o
@@ -169,7 +156,7 @@ binary_search.o: binary_search.c.o
 
 # target to build an object file
 binary_search.c.o:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/binary_search.c.o
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/binary_search.c.o
 .PHONY : binary_search.c.o
 
 binary_search.i: binary_search.c.i
@@ -178,7 +165,7 @@ binary_search.i: binary_search.c.i
 
 # target to preprocess a source file
 binary_search.c.i:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/binary_search.c.i
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/binary_search.c.i
 .PHONY : binary_search.c.i
 
 binary_search.s: binary_search.c.s
@@ -187,7 +174,7 @@ binary_search.s: binary_search.c.s
 
 # target to generate assembly for a file
 binary_search.c.s:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/binary_search.c.s
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/binary_search.c.s
 .PHONY : binary_search.c.s
 
 ft_exit.o: ft_exit.c.o
@@ -196,7 +183,7 @@ ft_exit.o: ft_exit.c.o
 
 # target to build an object file
 ft_exit.c.o:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/ft_exit.c.o
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/ft_exit.c.o
 .PHONY : ft_exit.c.o
 
 ft_exit.i: ft_exit.c.i
@@ -205,7 +192,7 @@ ft_exit.i: ft_exit.c.i
 
 # target to preprocess a source file
 ft_exit.c.i:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/ft_exit.c.i
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/ft_exit.c.i
 .PHONY : ft_exit.c.i
 
 ft_exit.s: ft_exit.c.s
@@ -214,7 +201,7 @@ ft_exit.s: ft_exit.c.s
 
 # target to generate assembly for a file
 ft_exit.c.s:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/ft_exit.c.s
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/ft_exit.c.s
 .PHONY : ft_exit.c.s
 
 ft_upload.o: ft_upload.c.o
@@ -223,7 +210,7 @@ ft_upload.o: ft_upload.c.o
 
 # target to build an object file
 ft_upload.c.o:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/ft_upload.c.o
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/ft_upload.c.o
 .PHONY : ft_upload.c.o
 
 ft_upload.i: ft_upload.c.i
@@ -232,7 +219,7 @@ ft_upload.i: ft_upload.c.i
 
 # target to preprocess a source file
 ft_upload.c.i:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/ft_upload.c.i
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/ft_upload.c.i
 .PHONY : ft_upload.c.i
 
 ft_upload.s: ft_upload.c.s
@@ -241,7 +228,7 @@ ft_upload.s: ft_upload.c.s
 
 # target to generate assembly for a file
 ft_upload.c.s:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/ft_upload.c.s
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/ft_upload.c.s
 .PHONY : ft_upload.c.s
 
 lem_alg.o: lem_alg.c.o
@@ -250,11 +237,7 @@ lem_alg.o: lem_alg.c.o
 
 # target to build an object file
 lem_alg.c.o:
-<<<<<<< HEAD
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/lem_alg.c.o
-=======
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.o
->>>>>>> origin/alex
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/lem_alg.c.o
 .PHONY : lem_alg.c.o
 
 lem_alg.i: lem_alg.c.i
@@ -263,11 +246,7 @@ lem_alg.i: lem_alg.c.i
 
 # target to preprocess a source file
 lem_alg.c.i:
-<<<<<<< HEAD
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/lem_alg.c.i
-=======
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.i
->>>>>>> origin/alex
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/lem_alg.c.i
 .PHONY : lem_alg.c.i
 
 lem_alg.s: lem_alg.c.s
@@ -276,11 +255,7 @@ lem_alg.s: lem_alg.c.s
 
 # target to generate assembly for a file
 lem_alg.c.s:
-<<<<<<< HEAD
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/lem_alg.c.s
-=======
-	$(MAKE) -f CMakeFiles/lem_in.dir/build.make CMakeFiles/lem_in.dir/lem_alg.c.s
->>>>>>> origin/alex
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/lem_alg.c.s
 .PHONY : lem_alg.c.s
 
 sort_char.o: sort_char.c.o
@@ -289,7 +264,7 @@ sort_char.o: sort_char.c.o
 
 # target to build an object file
 sort_char.c.o:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/sort_char.c.o
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/sort_char.c.o
 .PHONY : sort_char.c.o
 
 sort_char.i: sort_char.c.i
@@ -298,7 +273,7 @@ sort_char.i: sort_char.c.i
 
 # target to preprocess a source file
 sort_char.c.i:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/sort_char.c.i
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/sort_char.c.i
 .PHONY : sort_char.c.i
 
 sort_char.s: sort_char.c.s
@@ -307,7 +282,7 @@ sort_char.s: sort_char.c.s
 
 # target to generate assembly for a file
 sort_char.c.s:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/sort_char.c.s
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/sort_char.c.s
 .PHONY : sort_char.c.s
 
 tab_comp.o: tab_comp.c.o
@@ -316,7 +291,7 @@ tab_comp.o: tab_comp.c.o
 
 # target to build an object file
 tab_comp.c.o:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/tab_comp.c.o
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/tab_comp.c.o
 .PHONY : tab_comp.c.o
 
 tab_comp.i: tab_comp.c.i
@@ -325,7 +300,7 @@ tab_comp.i: tab_comp.c.i
 
 # target to preprocess a source file
 tab_comp.c.i:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/tab_comp.c.i
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/tab_comp.c.i
 .PHONY : tab_comp.c.i
 
 tab_comp.s: tab_comp.c.s
@@ -334,7 +309,7 @@ tab_comp.s: tab_comp.c.s
 
 # target to generate assembly for a file
 tab_comp.c.s:
-	$(MAKE) -f CMakeFiles/alex_lem.dir/build.make CMakeFiles/alex_lem.dir/tab_comp.c.s
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/tab_comp.c.s
 .PHONY : tab_comp.c.s
 
 # Help Target
@@ -345,7 +320,7 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... alex_lem"
+	@echo "... TMP_LEM_IN"
 	@echo "... alg_bfs.o"
 	@echo "... alg_bfs.i"
 	@echo "... alg_bfs.s"
