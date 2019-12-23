@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:12:37 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/23 15:24:18 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/23 18:24:35 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@
 # define CYAN(string)			"\x1b[36m" string "\x1b[0m"
 # define GREY(string)			"\x1b[37m" string "\x1b[0m"
 # define RESET(string)			"\x1b[0m" string "\x1b[0m"
-# define NUM_RM	4010
-# define NUM_LINK 40
+# define NUM_RM	5000
+# define NUM_LINK 400
 
 typedef struct s_pr_way
 {
@@ -69,6 +69,8 @@ typedef struct s_str
 	int 	link_count;
 	char	*buf;
 	int 	fd;
+	int		j;
+	int		q;
 	int		copy_end_link_count;
 }	t_str;
 
@@ -115,4 +117,28 @@ void			check_bfr_alg(t_str *lem_in, t_room *rooms);
 int				is_links(t_str *lem_in, t_room *rooms);
 int				is_room(char *str, t_str *lem_in, t_room *rooms);
 void			ft_slash_zero_link(char *str, char c);
+void			set_levels(t_room *rooms, int visit, t_str *lem);
+void			*clear_and_fresh(int mas[3], t_stack **tmp,
+								 t_stack *stack, t_room *rooms);
+t_stack			*set_one_level(t_stack *tmp, t_stack *stack,
+								  int mas[3], t_room *rooms);
+t_stack			*copy_stack(t_stack *stack);
+void			clear_stack(t_stack *stack);
+t_stack			*lst_create(t_stack *stack, int number);
+int				get_min_level(t_room *room,
+								 int pos, int visit);
+int				get_level_not_visited(t_room *room, int visit, int pos);
+int				has_ways_from_start(t_room *rooms, int start, int visited);
+int				get_next_room(t_room *room, int number_room, int visited);
+int				q_less(int *q, t_room *rooms, t_str *lem, int mas[2]);
+int				init_value_count_ways(int mas[2], int *q, int *count, t_str *lem);
+int				set_count_rows(t_room *rooms, int visit, t_str *lem);
+int				get_count_rows(t_room *rooms, int visit, t_str *lem);
+int				if_has_road_to_end_from_start(t_room *rooms,
+												 t_str *lem, int visit, int **qq);
+int				if_has_way(t_room *rooms, int visit, t_str *lem, int **qq);
+int				one_step_back_is_end(int qq, int end, int *i);
+void			else_push_row(int *i, t_str *lem, int **qq);
+void			push_row(int **qq, t_room *rooms, t_str *lem, int *i);
+int				**set_ways(t_room *rooms, int visit, t_str *lem);
 #endif

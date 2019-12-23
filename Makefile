@@ -6,23 +6,28 @@
 #    By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/29 09:12:50 by rmarni            #+#    #+#              #
-#    Updated: 2019/12/23 16:13:54 by rmarni           ###   ########.fr        #
+#    Updated: 2019/12/23 17:40:07 by rmarni           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 	=	lem-in
 
 #						*****	OBJECT FILES	******
-SRC 	=	alg_bfs.o       \
-            binary_search.o \
-            check_bfr_alg.o \
-            ft_exit.o       \
-            ft_upload.o     \
-            lem_alg.o       \
-            main.o          \
-            sort_char.o
+SRC 	=	alg_bfs.o           \
+            binary_search.o     \
+            check_bfr_alg.o     \
+            ft_exit.o           \
+            ft_upload.o         \
+            getters.o           \
+            getters2.o          \
+            lem_alg.o           \
+            main.o              \
+            set_levels.o        \
+            sort_char.o         \
+            valid.o
 
-SRCDIR	= 	$(addprefix ./, $(SRC))
+
+SRCDIR	= 	$(addprefix ./obj/, $(SRC))
 LIBDIR	=	./libft/
 
 #						*****	COLLORS			*****

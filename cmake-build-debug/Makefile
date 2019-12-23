@@ -177,6 +177,33 @@ binary_search.c.s:
 	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/binary_search.c.s
 .PHONY : binary_search.c.s
 
+check_bfr_alg.o: check_bfr_alg.c.o
+
+.PHONY : check_bfr_alg.o
+
+# target to build an object file
+check_bfr_alg.c.o:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/check_bfr_alg.c.o
+.PHONY : check_bfr_alg.c.o
+
+check_bfr_alg.i: check_bfr_alg.c.i
+
+.PHONY : check_bfr_alg.i
+
+# target to preprocess a source file
+check_bfr_alg.c.i:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/check_bfr_alg.c.i
+.PHONY : check_bfr_alg.c.i
+
+check_bfr_alg.s: check_bfr_alg.c.s
+
+.PHONY : check_bfr_alg.s
+
+# target to generate assembly for a file
+check_bfr_alg.c.s:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/check_bfr_alg.c.s
+.PHONY : check_bfr_alg.c.s
+
 ft_exit.o: ft_exit.c.o
 
 .PHONY : ft_exit.o
@@ -231,6 +258,60 @@ ft_upload.c.s:
 	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/ft_upload.c.s
 .PHONY : ft_upload.c.s
 
+getters.o: getters.c.o
+
+.PHONY : getters.o
+
+# target to build an object file
+getters.c.o:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/getters.c.o
+.PHONY : getters.c.o
+
+getters.i: getters.c.i
+
+.PHONY : getters.i
+
+# target to preprocess a source file
+getters.c.i:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/getters.c.i
+.PHONY : getters.c.i
+
+getters.s: getters.c.s
+
+.PHONY : getters.s
+
+# target to generate assembly for a file
+getters.c.s:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/getters.c.s
+.PHONY : getters.c.s
+
+getters2.o: getters2.c.o
+
+.PHONY : getters2.o
+
+# target to build an object file
+getters2.c.o:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/getters2.c.o
+.PHONY : getters2.c.o
+
+getters2.i: getters2.c.i
+
+.PHONY : getters2.i
+
+# target to preprocess a source file
+getters2.c.i:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/getters2.c.i
+.PHONY : getters2.c.i
+
+getters2.s: getters2.c.s
+
+.PHONY : getters2.s
+
+# target to generate assembly for a file
+getters2.c.s:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/getters2.c.s
+.PHONY : getters2.c.s
+
 lem_alg.o: lem_alg.c.o
 
 .PHONY : lem_alg.o
@@ -257,6 +338,60 @@ lem_alg.s: lem_alg.c.s
 lem_alg.c.s:
 	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/lem_alg.c.s
 .PHONY : lem_alg.c.s
+
+main.o: main.c.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.c.o:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/main.c.o
+.PHONY : main.c.o
+
+main.i: main.c.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.c.i:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/main.c.i
+.PHONY : main.c.i
+
+main.s: main.c.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.c.s:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/main.c.s
+.PHONY : main.c.s
+
+set_levels.o: set_levels.c.o
+
+.PHONY : set_levels.o
+
+# target to build an object file
+set_levels.c.o:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/set_levels.c.o
+.PHONY : set_levels.c.o
+
+set_levels.i: set_levels.c.i
+
+.PHONY : set_levels.i
+
+# target to preprocess a source file
+set_levels.c.i:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/set_levels.c.i
+.PHONY : set_levels.c.i
+
+set_levels.s: set_levels.c.s
+
+.PHONY : set_levels.s
+
+# target to generate assembly for a file
+set_levels.c.s:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/set_levels.c.s
+.PHONY : set_levels.c.s
 
 sort_char.o: sort_char.c.o
 
@@ -285,32 +420,32 @@ sort_char.c.s:
 	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/sort_char.c.s
 .PHONY : sort_char.c.s
 
-tab_comp.o: tab_comp.c.o
+valid.o: valid.c.o
 
-.PHONY : tab_comp.o
+.PHONY : valid.o
 
 # target to build an object file
-tab_comp.c.o:
-	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/tab_comp.c.o
-.PHONY : tab_comp.c.o
+valid.c.o:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/valid.c.o
+.PHONY : valid.c.o
 
-tab_comp.i: tab_comp.c.i
+valid.i: valid.c.i
 
-.PHONY : tab_comp.i
+.PHONY : valid.i
 
 # target to preprocess a source file
-tab_comp.c.i:
-	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/tab_comp.c.i
-.PHONY : tab_comp.c.i
+valid.c.i:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/valid.c.i
+.PHONY : valid.c.i
 
-tab_comp.s: tab_comp.c.s
+valid.s: valid.c.s
 
-.PHONY : tab_comp.s
+.PHONY : valid.s
 
 # target to generate assembly for a file
-tab_comp.c.s:
-	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/tab_comp.c.s
-.PHONY : tab_comp.c.s
+valid.c.s:
+	$(MAKE) -f CMakeFiles/TMP_LEM_IN.dir/build.make CMakeFiles/TMP_LEM_IN.dir/valid.c.s
+.PHONY : valid.c.s
 
 # Help Target
 help:
@@ -327,21 +462,36 @@ help:
 	@echo "... binary_search.o"
 	@echo "... binary_search.i"
 	@echo "... binary_search.s"
+	@echo "... check_bfr_alg.o"
+	@echo "... check_bfr_alg.i"
+	@echo "... check_bfr_alg.s"
 	@echo "... ft_exit.o"
 	@echo "... ft_exit.i"
 	@echo "... ft_exit.s"
 	@echo "... ft_upload.o"
 	@echo "... ft_upload.i"
 	@echo "... ft_upload.s"
+	@echo "... getters.o"
+	@echo "... getters.i"
+	@echo "... getters.s"
+	@echo "... getters2.o"
+	@echo "... getters2.i"
+	@echo "... getters2.s"
 	@echo "... lem_alg.o"
 	@echo "... lem_alg.i"
 	@echo "... lem_alg.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
+	@echo "... set_levels.o"
+	@echo "... set_levels.i"
+	@echo "... set_levels.s"
 	@echo "... sort_char.o"
 	@echo "... sort_char.i"
 	@echo "... sort_char.s"
-	@echo "... tab_comp.o"
-	@echo "... tab_comp.i"
-	@echo "... tab_comp.s"
+	@echo "... valid.o"
+	@echo "... valid.i"
+	@echo "... valid.s"
 .PHONY : help
 
 

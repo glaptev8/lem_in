@@ -12,8 +12,11 @@ add_executable(TMP_LEM_IN
         header.h
         lem_alg.c
         sort_char.c
-        tab_comp.c
         main.c
-        check_bfr_alg.c)
+        check_bfr_alg.c
+        getters.c
+        getters2.c
+        valid.c
+        set_levels.c)
 
 target_link_libraries(TMP_LEM_IN LINK_PUBLIC ${CMAKE_SOURCE_DIR}/libft.a)

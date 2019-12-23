@@ -6,7 +6,7 @@
 /*   By: rmarni <rmarni@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/23 15:21:41 by rmarni            #+#    #+#             */
-/*   Updated: 2019/12/23 15:23:33 by rmarni           ###   ########.fr       */
+/*   Updated: 2019/12/23 18:24:35 by rmarni           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int			main(int ac, char **av)
 		check_bfr_alg(&lem_in, rooms);
 	}
 	way = get_ways(&lem_in, rooms);
-	if (lem_in.room_count > 4010)
+	if (lem_in.room_count > 5010 || lem_in.count_ways == 0)
 		ft_exit(&lem_in, rooms, 1);
+	ft_printf("\n");
 	ft_lem_alg(&lem_in, way, rooms);
 	ft_exit(&lem_in, rooms, 0);
-	exit(0);
 }
