@@ -8,6 +8,6 @@ add_executable(lem_in
 		binary_search.c
 		alg_bfs.c
 		header.h
-		lem_alg.c)
+		lem_alg.c set_levels.c getters.c valid.c getters2.c)
 
 target_link_libraries(lem_in LINK_PUBLIC ${CMAKE_SOURCE_DIR}/libft.a)
