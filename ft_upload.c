@@ -268,6 +268,12 @@ int			main(int ac, char **av)
 	lem_in.link_count = 0;
 	lem_in.buf_start = NULL;
 	lem_in.buf_end = NULL;
+	
+	for (int x = 0; x < 5000; x++)
+	{
+		rooms[x].visit = 0;
+		rooms[x].lvl = -1;
+	}
 
 //	if (ac > 1)
 //		usage(&lem_in, rooms);
@@ -284,6 +290,8 @@ int			main(int ac, char **av)
 //		ft_exit(&lem_in, rooms, 0);
 	}
 //	printf("\n\n%d   %d\n", lem_in.start, lem_in.end);
+//	printf ("room[0].arr_room = \"%s\", room[0].arr_room = %s, room[7].link[1] = %d;\n", rooms[0].arr_room, rooms[797].arr_room, rooms[7].arr_link[1]);
+	
 	way = get_ways(&lem_in, rooms);
 //	int j = 0;
 //	while (way[j])

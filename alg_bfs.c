@@ -13,20 +13,20 @@
 #include "header.h"
 
 
-int		give_next_room(t_room *place, int number_room, int visited)
+int		give_next_room(t_room *room, int number_room, int visited)
 {
 	int i;
 
 	i = 0;
-	while (i < place[number_room].size_link_arr)
+	while (i < room[number_room].size_link_arr)
 	{
-		if (place[number_room].arr_link[i] == -1)
+		if (room[number_room].arr_link[i] == -1)
 		{
 			i++;
 			continue;
 		}
-		if (place[place[number_room].arr_link[i]].visit != visited)
-			return (place[number_room].arr_link[i]);
+		if (room[room[number_room].arr_link[i]].visit != visited)
+			return (room[number_room].arr_link[i]);
 		i++;
 	}
 	return (-1);
